@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class ChairController : MonoBehaviour
 {
@@ -15,63 +17,73 @@ public class ChairController : MonoBehaviour
     Coroutine rotation;
     Coroutine movement;
 
+
+    [SerializeField] XROrigin _origin;
+    [SerializeField] Transform _playerPosition;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        StartCoroutine(UpdatePosition());
+    }
+
+    IEnumerator UpdatePosition()
+    {
+        yield return new WaitForSeconds(0f);
+
+
+        _origin.MoveCameraToWorldLocation(_playerPosition.position);
+        _origin.MatchOriginUpCameraForward(_playerPosition.up, _playerPosition.forward);
+
+
+        //Vector3 camOffset = _origin.CameraInOriginSpacePos;
+
+        //_origin.gameObject.transform.position = _playerPosition.position - camOffset;
+
+        //_origin.gameObject.transform.rotation = _playerPosition.rotation;
+
+    }
+
+    XRInputSubsystem GetActiveXRInputSubsystem()
+    {
+        List<XRInputSubsystem> subsystems = new List<XRInputSubsystem>();
+        SubsystemManager.GetSubsystems(subsystems);
+        foreach (var subsystem in subsystems)
+        {
+            if (subsystem.running)
+            {
+                return subsystem;
+            }
+        }
+        return null;
     }
 
     private void FixedUpdate()
     {
+        //Debug.Log(leftHandInput.HandMovement + "  " + RightHandInput.HandMovement);
+
         if (leftHandInput.HandMovement != 0 || RightHandInput.HandMovement != 0)
         {
-            Vector3 newRotation = transform.up * (leftHandInput.HandMovement - RightHandInput.HandMovement) * 50f;
+            Vector3 torque = transform.up * (leftHandInput.HandMovement - RightHandInput.HandMovement) * rotationSpeed * Time.fixedDeltaTime;
 
-            if (rotation != null) StopCoroutine(rotation);
-            rotation = StartCoroutine(Rotation());
+            //rb.angularVelocity += newRotation * Time.fixedDeltaTime;
+
+            rb.AddTorque(torque, ForceMode.Impulse);
+
+            Vector3 force = transform.forward * (leftHandInput.HandMovement + RightHandInput.HandMovement) * moveSpeed * 100f * Time.fixedDeltaTime;
+
+            rb.AddForce(force, ForceMode.Impulse);
+
+            //if (rotation != null) StopCoroutine(rotation);
+            //rotation = StartCoroutine(Rotation());
 
 
-            if (movement != null) StopCoroutine(movement);
-            movement = StartCoroutine(Movement());
+            //if (movement != null) StopCoroutine(movement);
+            //movement = StartCoroutine(Movement());
 
         }
 
-    }
+        //Debug.Log(rb.angularVelocity);
+        //Debug.Log(rb.linearVelocity);
 
-
-    IEnumerator Rotation()
-    {
-        Vector3 strongestRotation = transform.up * (leftHandInput.HandMovement - RightHandInput.HandMovement) * rotationSpeed * 10f;
-        
-        float stage = 0f;
-        
-        Vector3 newRotation = new Vector3(strongestRotation.x, strongestRotation.y, strongestRotation.z);
-
-        while (newRotation.y > 0.05f)
-        {
-            rb.AddTorque(newRotation, ForceMode.Impulse);
-            newRotation = Vector3.Lerp(strongestRotation, Vector3.zero, stage);
-            stage += Time.fixedDeltaTime;
-            stage = Mathf.Clamp01(stage);
-            yield return null;
-        }
-    }
-
-
-    IEnumerator Movement()
-    {
-        Vector3 strongestForce = transform.forward * (leftHandInput.HandMovement + RightHandInput.HandMovement) * moveSpeed * 100f;
-
-        float stage = 0f;
-
-        Vector3 newForce = new Vector3(strongestForce.x, strongestForce.y, strongestForce.z);
-
-        while (!newForce.Equals(Vector3.zero))
-        {
-            rb.AddForce(newForce);
-            newForce = Vector3.Lerp(strongestForce, Vector3.zero, stage);
-            stage += Time.fixedDeltaTime;
-            stage = Mathf.Clamp01(stage);
-            yield return null;
-        }
     }
 }
