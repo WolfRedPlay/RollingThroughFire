@@ -3,26 +3,34 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class HandInputHandler : MonoBehaviour
 {
-    BoxCollider triggerBox;
-
-    Vector3 startHandPosition;
-
+    
+    BoxCollider _triggerBox;
+    Vector3 _startHandPosition;
     float positionThreshold = 0.005f;
+    bool _isBreak = false;
+
+
+
+    public bool IsBreak => _isBreak;
+    public void SetBreak(bool value) {  _isBreak = value; }
 
     public float HandMovement { get; set; }
 
+
+
+
     private void Start()
     {
-        triggerBox = GetComponent<BoxCollider>();
+        _triggerBox = GetComponent<BoxCollider>();
         HandMovement = 0f;
+        _isBreak = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Hand"))
         {
-            startHandPosition = transform.InverseTransformPoint(other.transform.position);
-            Debug.Log("Entered");
+            _startHandPosition = transform.InverseTransformPoint(other.transform.position);
         }
     }
 
@@ -33,19 +41,16 @@ public class HandInputHandler : MonoBehaviour
             
             Vector3 newPosition = transform.InverseTransformPoint(other.transform.position);
 
-            Debug.Log(newPosition.z - startHandPosition.z);
-            if (Mathf.Abs(newPosition.z - startHandPosition.z) > positionThreshold)
+            if ((Mathf.Abs(newPosition.z - _startHandPosition.z) > positionThreshold) && !_isBreak)
             {
-                HandMovement = newPosition.z - startHandPosition.z;
-                startHandPosition = new Vector3(newPosition.x, newPosition.y, newPosition.z);
+                HandMovement = (newPosition.z - _startHandPosition.z) * 100f;
+                _startHandPosition = new Vector3(newPosition.x, newPosition.y, newPosition.z);
             }
             else
             {
                 HandMovement = 0f;
-                startHandPosition = new Vector3(newPosition.x, newPosition.y, newPosition.z);
+                _startHandPosition = new Vector3(newPosition.x, newPosition.y, newPosition.z);
             }
-
-            Debug.Log(HandMovement);
         }
     }
     private void OnTriggerExit(Collider other)
