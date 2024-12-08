@@ -1320,32 +1320,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1884697571}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 431f8f9ba1bdeb642abad5726ecf2635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Graph: {fileID: -2422178104263828367, guid: bec2b2a297a3b8f429755a1c5e732839, type: 2}
-  m_BlackboardVariableOverridesList:
-  - rid: 449448640937722457
-  - rid: 449448640937722458
-  references:
-    version: 2
-    RefIds:
-    - rid: 449448640937722457
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1
-          m_Value1: 0
-        Name: Self
-        m_Value: {fileID: 1884697571}
-    - rid: 449448640937722458
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 10307972540474255998
-          m_Value1: 8773510845878764285
-        Name: Patroling Area
-        m_Value: {fileID: 945886355}
+  Should_Broadcast: 0
+  Broadcast_radius: 5
+  Zombie_Layer:
+    serializedVersion: 2
+    m_Bits: 1024
+  Player_tag: Player
+  Detection_Radius: 5
+  Detection_Angle: 90
+  Detection_time: 3
+  Player_layer:
+    serializedVersion: 2
+    m_Bits: 0
+  Delay_between_attacks: 1
+  Remember_time: 10
+  Attack_RS: 6
+  Should_Patrol: 1
+  Patrol_Area: {fileID: 945886357}
+  MaxRadius: 10
+  Patrol_RS: 3
+  onPoint_time: 2
+  MaxAttempts: 50
 --- !u!1 &1888471833
 GameObject:
   m_ObjectHideFlags: 0
