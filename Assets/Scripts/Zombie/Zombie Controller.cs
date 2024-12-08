@@ -33,15 +33,18 @@ public class ZombieController : MonoBehaviour
     private GameObject player;
     private NavMeshAgent agent;
     private bool Ready_to_broadcast = true;
-
+    //Temperal
     private float broadcast_time = 2;
     private float broadcast_timer = 0;
+    //Temperal
+
 
     [Header("Attack and Detection")]
     [SerializeField, Tooltip("Distance on which zombie will see the player")] float Detection_Radius = 5.0f;
     [SerializeField, Range(1, 360), Tooltip("Angle in which zombie will see the player")] float Detection_Angle = 90f;
-    [SerializeField, Tooltip("Time for which player will have to stay in sight of zombie in order to be detected")] float Time_to_detect = 3.0f;
+    [SerializeField, Tooltip("Time for which player will have to stay in sight of zombie in order to be detected")] float Detection_time = 3.0f;
     [SerializeField] LayerMask Player_layer;
+    private float Detection_timer = 0;
 
     [SerializeField] float Delay_between_attacks = 1.0f;
     [SerializeField, Tooltip("Time for which zombie will remeber player even if player exits the range of detection")] float Remember_time = 10.0f;
