@@ -43,7 +43,6 @@ public class ZombieController : MonoBehaviour
     [SerializeField, Tooltip("Distance on which zombie will see the player")] float Detection_Radius = 5.0f;
     [SerializeField, Range(1, 360), Tooltip("Angle in which zombie will see the player")] float Detection_Angle = 90f;
     [SerializeField, Tooltip("Time for which player will have to stay in sight of zombie in order to be detected")] float Detection_time = 3.0f;
-    [SerializeField] LayerMask Player_layer;
     private float Detection_timer = 0;
 
     [SerializeField] float Delay_between_attacks = 1.0f;
@@ -68,11 +67,14 @@ public class ZombieController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag(Player_tag);
+        if (player == null) Debug.LogError("Could not find the player");
         Routine();
     }
 
     private void Update()
     {
+        Debugging();
+
         if (IfSeeThePlayer())
         {
             if (Should_Broadcast && Ready_to_broadcast) 
@@ -176,6 +178,14 @@ public class ZombieController : MonoBehaviour
         }
     }
 
+
+    private void Debugging()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Debug.Log(behavior.ToString());
+        }
+    }
 
     private void Routine()
     {
