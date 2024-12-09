@@ -73,7 +73,6 @@ public class ZombieController : MonoBehaviour
 
     private void Update()
     {
-        Debugging();
 
         if (IfSeeThePlayer())
         {
@@ -92,6 +91,7 @@ public class ZombieController : MonoBehaviour
             SetRemeberTimer();
 
         }
+
         if (Remember_timer > 0)
         {
             Remember_timer -= Time.deltaTime;
@@ -178,15 +178,6 @@ public class ZombieController : MonoBehaviour
         }
     }
 
-
-    private void Debugging()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Debug.Log(behavior.ToString());
-        }
-    }
-
     private void Routine()
     {
         if (Should_Patrol)
@@ -223,12 +214,12 @@ public class ZombieController : MonoBehaviour
     {
         Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
-
+        
         if (angleToPlayer <= Detection_Angle / 2)
         {
-            if (Physics.Raycast(transform.position + Vector3.up, directionToPlayer, out RaycastHit hit, Detection_Radius))
+            if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, Detection_Radius))
             {
-                if (hit.collider == player)
+                if (hit.transform.gameObject == player)
                 {
                     return true;
                 }
@@ -258,7 +249,7 @@ public class ZombieController : MonoBehaviour
 
                 if (Patrol_Area.bounds.Contains(pointOnFloor))
                 {
-                    if (NavMesh.SamplePosition(pointOnFloor, out NavMeshHit navHit, 1.5f, NavMesh.AllAreas))
+                    if (NavMesh.SamplePosition(pointOnFloor, out NavMeshHit navHit, 2f, NavMesh.AllAreas))
                     {
                         Patrol_point_SET = true;
                         return navHit.position;
@@ -279,7 +270,6 @@ public class ZombieController : MonoBehaviour
     private void FullStop()
     {
         agent.SetDestination(transform.position);
-        agent.isStopped = true;
         Agent_dest_SET = false;
     }
 
