@@ -999,7 +999,7 @@ Transform:
   m_GameObject: {fileID: 1340359329}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.91, y: 1.33, z: 0.48}
+  m_LocalPosition: {x: 24.35, y: 1.33, z: 0.32}
   m_LocalScale: {x: 0.37775, y: 0.37775, z: 0.37775}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1384,7 +1384,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1431,22 +1431,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431f8f9ba1bdeb642abad5726ecf2635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Should_Broadcast: 0
-  Broadcast_radius: 5
+  behavior: 0
   Zombie_Layer:
     serializedVersion: 2
     m_Bits: 1024
   Player_tag: Player
+  Should_Broadcast: 0
+  Broadcast_radius: 5
   Detection_Radius: 15
   Detection_Angle: 140
+  Should_detection_time: 1
   Detection_time: 3
-  Delay_between_attacks: 1
   Remember_time: 10
-  Attack_RS: 6
+  Chase_rotation_speed: 6
+  Remember_timer: 0
+  Attack_Distance: 2
+  Delay_between_attacks: 1
   Should_Patrol: 1
   Patrol_Area: {fileID: 945886357}
-  MaxRadius: 10
-  Patrol_RS: 3
+  Max_Point_distance: 10
+  Patrol_rotation_speed: 3
   onPoint_time: 2
   MaxAttempts: 50
 --- !u!1 &1888471833
