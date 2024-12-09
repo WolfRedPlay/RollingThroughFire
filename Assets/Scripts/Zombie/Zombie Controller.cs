@@ -13,7 +13,7 @@ using UnityEditor;
 [RequireComponent(typeof(NavMeshAgent))]
 public class ZombieController : MonoBehaviour
 {
-    public enum Behavior
+    private enum Behavior
     {
         None,
         Waiting_onPoint,
@@ -23,7 +23,7 @@ public class ZombieController : MonoBehaviour
         BroadCasting,
         Detecting_Player
     }
-    public Behavior behavior = Behavior.None;
+    private Behavior behavior = Behavior.None;
 
 
     [Header("General")]
@@ -51,7 +51,7 @@ public class ZombieController : MonoBehaviour
     [Header("Chasing")]
     [SerializeField, Tooltip("Time for which zombie will remeber player even if player exits the range of detection")] float Remember_time = 10.0f;
     [SerializeField, Tooltip("Rotation speed towards target when chasing")] float Chase_rotation_speed = 6f;
-    public float Remember_timer = 0;
+    private float Remember_timer = 0;
 
     [Header("Attack")]
     [SerializeField] float Attack_Distance = 2f;
@@ -61,7 +61,8 @@ public class ZombieController : MonoBehaviour
     [Header("Patrolling")]
     [SerializeField] bool Should_Patrol = true;
     [SerializeField, Tooltip("Defines the patrol area")] Collider Patrol_Area;
-    [SerializeField, Tooltip("Max distance on what patrolling point can be set")] float Max_Point_distance = 10f;
+    [SerializeField, Tooltip("Max distance on what patrolling point can be set")] float Point_spawn_radius = 10f;
+    [SerializeField, Range(1.1f, 20),Tooltip("Needs to control inner radius")] float Inner_radius_coefficient = 1.5f;
     [SerializeField, Tooltip("Rotation speed towards target when patrolling")] float Patrol_rotation_speed = 3f;
     [SerializeField] float onPoint_time = 2f;
     [SerializeField, Tooltip("Maximum attempts to find a valid patrol point")] int MaxAttempts = 50;
@@ -70,6 +71,12 @@ public class ZombieController : MonoBehaviour
     private bool Agent_dest_SET = false;
     private float onPoint_timer = 0;
 
+    [Header("Gizmos")]
+    [SerializeField, Tooltip("Enable or disable gizmos visualization")] bool ShowGizmos = true;
+    [SerializeField, Tooltip("Color for detection radius")] Color DetectionGizmoColor = Color.red;
+    [SerializeField, Tooltip("Color for broadcast radius")] Color BroadcastGizmoColor = Color.blue;
+    [SerializeField, Tooltip("Color for patrol spawn radius")] Color PatrolSpawnGizmoColor = Color.green;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -77,6 +84,7 @@ public class ZombieController : MonoBehaviour
         if (player == null) Debug.LogError("Could not find the player");
         Routine();
         ResetDetectionTimer();
+        onPoint_timer = onPoint_time;
     }
 
     private void Update()
@@ -293,22 +301,21 @@ public class ZombieController : MonoBehaviour
 
     private Vector3 GetPatrolPoint()
     {
-        float patrolHeight = Patrol_Area.bounds.max.y;
+        float patrolHeight = Patrol_Area.bounds.max.y - 0.1f;
 
         for (int i = 0; i < MaxAttempts; i++)
         {
-            Vector3 randomOffset = UnityEngine.Random.insideUnitSphere * Max_Point_distance;
-            randomOffset.y = 0;
+            Vector3 randomOffset = RandomPointOnDonat(Point_spawn_radius/Inner_radius_coefficient, Point_spawn_radius);
             Vector3 randomPoint = transform.position + randomOffset;
             randomPoint.y = patrolHeight;
 
+            //Debug.DrawRay(randomPoint, Vector3.down * 10, Color.red, 5f);
             if (Physics.Raycast(randomPoint, Vector3.down, out RaycastHit hit, Mathf.Infinity))
             {
-                Vector3 pointOnFloor = hit.point;
-
-                if (Patrol_Area.bounds.Contains(pointOnFloor))
+                //Debug.DrawRay(hit.point, Vector3.up, Color.green, 2f);
+                if (Patrol_Area.bounds.Contains(hit.point))
                 {
-                    if (NavMesh.SamplePosition(pointOnFloor, out NavMeshHit navHit, 2f, NavMesh.AllAreas))
+                    if (NavMesh.SamplePosition(hit.point, out NavMeshHit navHit, 1f, NavMesh.AllAreas))
                     {
                         Patrol_point_SET = true;
                         return navHit.position;
@@ -354,6 +361,32 @@ public class ZombieController : MonoBehaviour
         }
 
         return false;
+    }
+
+    private Vector3 RandomPointOnDonat(float innerRadius, float outerRadius)
+    {
+        float angle = UnityEngine.Random.Range(0f, 2 * Mathf.PI);
+        float radius = Mathf.Sqrt(UnityEngine.Random.Range(innerRadius * innerRadius, outerRadius * outerRadius));
+
+        float x = radius * Mathf.Cos(angle);
+        float z = radius * Mathf.Sin(angle);
+
+        return new Vector3(x, 0, z);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!ShowGizmos) return;
+
+        //Gizmos.color = DetectionGizmoColor;
+        //Gizmos.DrawWireSphere(transform.position, Detection_Radius);
+
+        //Gizmos.color = BroadcastGizmoColor;
+        //Gizmos.DrawWireSphere(transform.position, Broadcast_radius);
+
+        Gizmos.color = PatrolSpawnGizmoColor;
+        Gizmos.DrawWireSphere(transform.position, Point_spawn_radius/Inner_radius_coefficient);
+        Gizmos.DrawWireSphere(transform.position, Point_spawn_radius);
     }
 
 }
