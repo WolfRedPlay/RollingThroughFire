@@ -337,7 +337,7 @@ public class ZombieController : MonoBehaviour
         {
             
             Debug.DrawRay(transform.position, directionToPlayer * Detection_Radius, Color.red);
-            if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, Detection_Radius))
+            if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, Detection_Radius, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
             {
                 if (hit.transform.gameObject == player)
                 {
