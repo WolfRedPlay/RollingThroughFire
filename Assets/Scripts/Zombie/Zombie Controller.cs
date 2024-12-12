@@ -1,9 +1,6 @@
 using System;
-using Unity.Tutorials.Core.Editor;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 /*
 #if UNITY_EDITOR
 using UnityEditor;

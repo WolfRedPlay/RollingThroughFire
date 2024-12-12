@@ -29,7 +29,7 @@ public class ChairController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        StartCoroutine(UpdatePosition());
+        //StartCoroutine(UpdatePosition());
     }
 
     IEnumerator UpdatePosition()
