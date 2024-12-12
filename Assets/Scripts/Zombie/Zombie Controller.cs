@@ -27,6 +27,7 @@ public class ZombieController : MonoBehaviour
     [SerializeField] LayerMask Zombie_Layer;
     [SerializeField] string Player_tag = "Player";
     private GameObject player;
+    private Health Players_health;
     private NavMeshAgent agent;
 
     [Header("Broadcast")]
@@ -51,9 +52,11 @@ public class ZombieController : MonoBehaviour
     private float Remember_timer = 0;
 
     [Header("Attack")]
+    [SerializeField] float Damage = 20;
     [SerializeField] float Attack_Distance = 2f;
     [SerializeField] float Delay_between_attacks = 1.0f;
-    private bool Ready_to_attack = false;
+    private float timer_between_attacks = 0;
+    private bool Ready_to_attack = true;
 
     [Header("Patrolling")]
     [SerializeField] bool Should_Patrol = true;
@@ -78,7 +81,7 @@ public class ZombieController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag(Player_tag);
-        if (player == null) Debug.LogError("Could not find the player");
+        Players_health = player.GetComponent<Health>();
         Routine();
         ResetDetectionTimer();
         onPoint_timer = onPoint_time;
@@ -94,12 +97,15 @@ public class ZombieController : MonoBehaviour
             }
             else
             {
-                if (Should_Broadcast && Ready_to_broadcast)
+                if (Should_Broadcast)
                 {
-                    //Ready_to_broadcast = false;
-                    behavior = Behavior.BroadCasting;
-                    broadcast_timer = broadcast_time;
-                    FullStop();
+                    if (Ready_to_broadcast)
+                    {
+                        Ready_to_broadcast = false;
+                        behavior = Behavior.BroadCasting;
+                        broadcast_timer = broadcast_time;
+                        FullStop();
+                    }
                 }
                 else if (behavior < Behavior.Chasing || CheckOnTemperalBehaviors())
                 {
@@ -172,6 +178,8 @@ public class ZombieController : MonoBehaviour
 
             case Behavior.BroadCasting:
                 // Sound, possible animation of broadcasting
+                RotateTo(player.transform.position, Patrol_rotation_speed * 0.5f);
+                Debug.Log("Broadcasting");
                 if (broadcast_timer <= 0)
                 {
                     Broadcast();
@@ -186,22 +194,37 @@ public class ZombieController : MonoBehaviour
 
             case Behavior.Chasing:
 
-                if (!ReachedDestination(player.transform.position, Attack_Distance / 2))
+                if (!ReachedDestination(player.transform.position, Attack_Distance * 0.5f))
                 {
                     MoveTo(player.transform.position);
                 }
                 else
                 {
                     FullStop();
+                    behavior = Behavior.Attaking;
                 }
-                
+                resetAttack();
                 RotateTo(player.transform.position, Chase_rotation_speed);
 
                 break;
 
             case Behavior.Attaking:
 
-
+                if (ReachedDestination(player.transform.position, Attack_Distance))
+                {
+                    if (Ready_to_attack)
+                    {
+                        attack();
+                    }
+                    else
+                    {
+                        resetAttack();
+                    }
+                }
+                else
+                {
+                    behavior = Behavior.Chasing;
+                }
 
 
                 break;
@@ -209,10 +232,29 @@ public class ZombieController : MonoBehaviour
             case Behavior.Detecting_Player:
 
                 FullStop();
-                RotateTo(player.transform.position, Patrol_rotation_speed / 2);
+                RotateTo(player.transform.position, Patrol_rotation_speed * 0.5f);
                 Detection_timer -= Time.deltaTime;
 
                 break;
+        }
+    }
+
+    private void attack()
+    {
+        Players_health.Damage(Damage);
+        Ready_to_attack = false;
+        timer_between_attacks = Delay_between_attacks;
+    }
+
+    private void resetAttack()
+    {
+        if (timer_between_attacks <= 0)
+        {
+            Ready_to_attack = true;
+        }
+        else
+        {
+            timer_between_attacks -= Time.deltaTime;
         }
     }
 
@@ -254,23 +296,33 @@ public class ZombieController : MonoBehaviour
         }
     }
 
-    public void SetRemeberTimer()
+    private void SetRemeberTimer()
+    {
+        Remember_timer = Remember_time;
+    }
+
+    public void BroadCasted()
     {
         Remember_timer = Remember_time;
         Ready_to_broadcast = false;
+        behavior = Behavior.Chasing;
     }
 
     private void Broadcast()
     {
-        Debug.Log("Runing");
+        
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, Broadcast_radius, Zombie_Layer);
         foreach (var hitCollider in hitColliders)
         {
             ZombieController zombie = hitCollider.GetComponent<ZombieController>();
             if (zombie != null)
             {
-                Debug.Log("FF");
-                zombie.SetRemeberTimer();
+                zombie.BroadCasted();
+                Debug.Log("Good");
+            }
+            else
+            {
+                Debug.Log("Fuck");
             }
         }
         Ready_to_broadcast = false;
