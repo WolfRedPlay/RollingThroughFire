@@ -8,26 +8,27 @@ using UnityEngine.XR;
 
 public class ChairController : MonoBehaviour
 {
+    [Header("Hand Inputs")]
     [SerializeField] HandInputHandler leftHandInput;
     [SerializeField] HandInputHandler rightHandInput;
 
-
+    [Header("Speeds")]
     [SerializeField] float _moveSpeed;
     [SerializeField] float _rotationSpeed;
     [SerializeField] float _breakingForce;
 
-    Rigidbody rb;
-
+    [Header("Recentering")]
     [SerializeField] XROrigin _origin;
     [SerializeField] Transform _playerPosition;
 
 
-    float leftMultiplier = 1f;
-    float rightMultiplier = 1f;
+    Rigidbody _rb;
+    float _leftMultiplier = 1f;
+    float _rightMultiplier = 1f;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
         StartCoroutine(UpdatePosition());
     }
 
@@ -37,39 +38,35 @@ public class ChairController : MonoBehaviour
 
 
         _origin.MoveCameraToWorldLocation(_playerPosition.position);
-        //_origin.MatchOriginUpCameraForward(_playerPosition.up, _playerPosition.forward);
 
     }
 
     private void FixedUpdate()
     {
-        leftMultiplier = 1f;
-        rightMultiplier = 1f;
+        _leftMultiplier = 1f;
+        _rightMultiplier = 1f;
 
         if (leftHandInput.IsBreak)
         {
-            rightMultiplier = 2f;
+            _rightMultiplier = 2f;
         }
         if (rightHandInput.IsBreak)
         {
-            leftMultiplier = 2f;
+            _leftMultiplier = 2f;
         }
 
 
-        //Debug.Log(leftHandInput.HandMovement + "  " + RightHandInput.HandMovement);
         if (leftHandInput.HandMovement != 0f || rightHandInput.HandMovement != 0f)
         {
-            Vector3 rotation = Vector3.up * (leftHandInput.HandMovement * leftMultiplier - rightHandInput.HandMovement * rightMultiplier) * _rotationSpeed * Time.fixedDeltaTime;
-            rb.AddTorque(rotation, ForceMode.Force);
+            Vector3 rotation = Vector3.up * (leftHandInput.HandMovement * _leftMultiplier - rightHandInput.HandMovement * _rightMultiplier) * _rotationSpeed * Time.fixedDeltaTime;
+            _rb.AddTorque(rotation, ForceMode.Force);
 
 
             Debug.Log(leftHandInput.HandMovement);
             Debug.Log(rightHandInput.HandMovement);
             Vector3 movement = transform.forward * (leftHandInput.HandMovement + rightHandInput.HandMovement) * _moveSpeed * Time.fixedDeltaTime;
-            //rb.AddForce(movement, ForceMode.Force);
-            rb.linearVelocity += movement;
+            _rb.linearVelocity += movement;
 
-            //Debug.Log(rb.linearVelocity);
         }
 
         if (leftHandInput.IsBreak)
@@ -86,25 +83,25 @@ public class ChairController : MonoBehaviour
 
     private void ApplyBreak(bool isLeft)
     {
-        if (rb.linearVelocity.magnitude < 0.01f) return;
+        if (_rb.linearVelocity.magnitude < 0.01f) return;
 
 
 
-        Vector3 forwardVelocity = Vector3.Project(rb.linearVelocity, transform.forward);
+        Vector3 forwardVelocity = Vector3.Project(_rb.linearVelocity, transform.forward);
         Vector3 brakingForce = forwardVelocity * (_breakingForce * Time.fixedDeltaTime);
         
-        rb.linearVelocity -= brakingForce;
+        _rb.linearVelocity -= brakingForce;
 
        
-        if (rb.linearVelocity.magnitude < 0.1f) rb.linearVelocity = Vector3.zero;
+        if (_rb.linearVelocity.magnitude < 0.1f) _rb.linearVelocity = Vector3.zero;
     }
 
     void OnDrawGizmos()
     {
-        if (rb != null)
+        if (_rb != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position + transform.rotation * rb.centerOfMass, 0.1f);
+            Gizmos.DrawSphere(transform.position + transform.rotation * _rb.centerOfMass, 0.1f);
         }
     }
 }
