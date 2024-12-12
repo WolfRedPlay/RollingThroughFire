@@ -198,7 +198,7 @@ public class ZombieController : MonoBehaviour
                 {
                     MoveTo(player.transform.position);
                 }
-                else
+                else if(Players_health != null)
                 {
                     FullStop();
                     behavior = Behavior.Attaking;
