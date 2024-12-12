@@ -97,12 +97,15 @@ public class ZombieController : MonoBehaviour
             }
             else
             {
-                if (Should_Broadcast && Ready_to_broadcast)
+                if (Should_Broadcast)
                 {
-                    //Ready_to_broadcast = false;
-                    behavior = Behavior.BroadCasting;
-                    broadcast_timer = broadcast_time;
-                    FullStop();
+                    if (Ready_to_broadcast)
+                    {
+                        Ready_to_broadcast = false;
+                        behavior = Behavior.BroadCasting;
+                        broadcast_timer = broadcast_time;
+                        FullStop();
+                    }
                 }
                 else if (behavior < Behavior.Chasing || CheckOnTemperalBehaviors())
                 {
@@ -175,6 +178,8 @@ public class ZombieController : MonoBehaviour
 
             case Behavior.BroadCasting:
                 // Sound, possible animation of broadcasting
+                RotateTo(player.transform.position, Patrol_rotation_speed * 0.5f);
+                Debug.Log("Broadcasting");
                 if (broadcast_timer <= 0)
                 {
                     Broadcast();
@@ -212,7 +217,7 @@ public class ZombieController : MonoBehaviour
             case Behavior.Detecting_Player:
 
                 FullStop();
-                RotateTo(player.transform.position, Patrol_rotation_speed / 2);
+                RotateTo(player.transform.position, Patrol_rotation_speed * 0.5f);
                 Detection_timer -= Time.deltaTime;
 
                 break;
@@ -257,23 +262,33 @@ public class ZombieController : MonoBehaviour
         }
     }
 
-    public void SetRemeberTimer()
+    private void SetRemeberTimer()
+    {
+        Remember_timer = Remember_time;
+    }
+
+    public void BroadCasted()
     {
         Remember_timer = Remember_time;
         Ready_to_broadcast = false;
+        behavior = Behavior.Chasing;
     }
 
     private void Broadcast()
     {
-        Debug.Log("Runing");
+        
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, Broadcast_radius, Zombie_Layer);
         foreach (var hitCollider in hitColliders)
         {
             ZombieController zombie = hitCollider.GetComponent<ZombieController>();
             if (zombie != null)
             {
-                Debug.Log("FF");
-                zombie.SetRemeberTimer();
+                zombie.BroadCasted();
+                Debug.Log("Good");
+            }
+            else
+            {
+                Debug.Log("Fuck");
             }
         }
         Ready_to_broadcast = false;
