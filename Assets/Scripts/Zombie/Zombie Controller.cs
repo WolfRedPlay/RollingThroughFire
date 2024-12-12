@@ -89,7 +89,6 @@ public class ZombieController : MonoBehaviour
 
     private void Update()
     {
-        
         if (IfSeeThePlayer())
         {
             if (Should_detection_time && Detection_timer > 0 && Remember_timer <= 0)
@@ -176,7 +175,6 @@ public class ZombieController : MonoBehaviour
 
             case Behavior.BroadCasting:
                 // Sound, possible animation of broadcasting
-
                 if (broadcast_timer <= 0)
                 {
                     Broadcast();
@@ -267,12 +265,14 @@ public class ZombieController : MonoBehaviour
 
     private void Broadcast()
     {
+        Debug.Log("Runing");
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, Broadcast_radius, Zombie_Layer);
         foreach (var hitCollider in hitColliders)
         {
             ZombieController zombie = hitCollider.GetComponent<ZombieController>();
             if (zombie != null)
             {
+                Debug.Log("FF");
                 zombie.SetRemeberTimer();
             }
         }
