@@ -29,17 +29,18 @@ public class ChairController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        //StartCoroutine(UpdatePosition());
-    }
-
-    IEnumerator UpdatePosition()
-    {
-        yield return new WaitForSeconds(0f);
-
-
         _origin.MoveCameraToWorldLocation(_playerPosition.position);
 
+        //need to test
+        Camera camera = GameObject.FindAnyObjectByType<Camera>();
+        camera.enabled = false;
+        camera.transform.rotation = _playerPosition.rotation;
+        camera.enabled = true;
+        //
+        
+        //_origin.RotateAroundCameraPosition();
     }
+
 
     private void FixedUpdate()
     {
@@ -61,9 +62,6 @@ public class ChairController : MonoBehaviour
             Vector3 rotation = Vector3.up * (leftHandInput.HandMovement * _leftMultiplier - rightHandInput.HandMovement * _rightMultiplier) * _rotationSpeed * Time.fixedDeltaTime;
             _rb.AddTorque(rotation, ForceMode.Force);
 
-
-            Debug.Log(leftHandInput.HandMovement);
-            Debug.Log(rightHandInput.HandMovement);
             Vector3 movement = transform.forward * (leftHandInput.HandMovement + rightHandInput.HandMovement) * _moveSpeed * Time.fixedDeltaTime;
             _rb.linearVelocity += movement;
 
