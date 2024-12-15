@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
@@ -26,18 +27,24 @@ public class ChairControllerWithGrab : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _origin.MoveCameraToWorldLocation(_playerPosition.position);
 
         //need to test
-        Camera camera = GameObject.FindAnyObjectByType<Camera>();
-        camera.enabled = false;
-        camera.transform.rotation = _playerPosition.rotation;
-        camera.enabled = true;
+        //Camera camera = GameObject.FindAnyObjectByType<Camera>();
+        //camera.enabled = false;
+        //camera.transform.rotation = _playerPosition.rotation;
+        //camera.enabled = true;
         //
 
         //_origin.RotateAroundCameraPosition();
     }
 
+    
+    IEnumerator REsetPos()
+    {
+        yield return new WaitForSeconds(.1f);
+        _origin.MoveCameraToWorldLocation(_playerPosition.position);
+
+    }
 
     private void FixedUpdate()
     {
