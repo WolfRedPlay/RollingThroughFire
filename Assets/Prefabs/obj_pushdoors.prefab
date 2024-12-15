@@ -163,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 2466309951757895141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.048532963, z: 2}
+  m_LocalPosition: {x: 0, y: 0.048532963, z: 1.3}
   m_LocalScale: {x: 0.14067437, y: 3.0000346, z: 0.34287664}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -432,7 +432,7 @@ Transform:
   m_GameObject: {fileID: 3493524946974699071}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.6250001}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 0.14067437, y: 3.0000348, z: 0.3428766}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -640,7 +640,7 @@ Transform:
   m_GameObject: {fileID: 7104054736846702508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.048532963, z: -0.75}
+  m_LocalPosition: {x: 0, y: 0.048532963, z: -1.3}
   m_LocalScale: {x: 0.14067437, y: 3.0000346, z: 0.34287664}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -810,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 8048687247403761208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.6}
   m_LocalScale: {x: 1.1969604, y: 2.589866, z: 0.05521477}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -899,7 +899,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8048687247403761208}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -956,8 +956,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0.028398514, y: -0.011844767, z: 0.47553825}
   m_UseSpring: 1
   m_Spring:
-    spring: 2.3
-    damper: 0.5
+    spring: 10
+    damper: 0
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -968,7 +968,7 @@ HingeJoint:
   m_ExtendedLimits: 0
   m_UseAcceleration: 0
   m_Limits:
-    min: -100
+    min: 0
     max: 100
     bounciness: 0
     bounceMinVelocity: 0.2
@@ -1134,7 +1134,7 @@ Transform:
   m_GameObject: {fileID: 8452260733606450493}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.68925446, z: -0, w: 0.7245195}
-  m_LocalPosition: {x: 0.057, y: 0, z: 1.218}
+  m_LocalPosition: {x: 0, y: 0, z: 0.6}
   m_LocalScale: {x: 1.19696, y: 2.589866, z: 0.05521477}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1223,7 +1223,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8452260733606450493}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1280,8 +1280,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0.1212666, y: -0.014925082, z: 3.0338433}
   m_UseSpring: 1
   m_Spring:
-    spring: 2.3
-    damper: 0.5
+    spring: 10
+    damper: 0
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -1292,7 +1292,7 @@ HingeJoint:
   m_ExtendedLimits: 0
   m_UseAcceleration: 0
   m_Limits:
-    min: -100
+    min: 0
     max: 100
     bounciness: 0
     bounceMinVelocity: 0.2
