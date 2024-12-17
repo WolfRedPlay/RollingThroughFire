@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.XR.CoreUtils;
+using UnityEditor.XR.LegacyInputHelpers;
 using UnityEngine;
 
 public class ChairControllerWithGrab : MonoBehaviour
@@ -28,6 +29,10 @@ public class ChairControllerWithGrab : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
 
+        //_origin.MoveCameraToWorldLocation(_playerPosition.position);
+
+
+        StartCoroutine(ResetPos());
         //need to test
         //Camera camera = GameObject.FindAnyObjectByType<Camera>();
         //camera.enabled = false;
@@ -38,11 +43,34 @@ public class ChairControllerWithGrab : MonoBehaviour
         //_origin.RotateAroundCameraPosition();
     }
 
-    
-    IEnumerator REsetPos()
+
+    IEnumerator ResetPos()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.01f);
         _origin.MoveCameraToWorldLocation(_playerPosition.position);
+
+        yield return new WaitForSeconds(.01f);
+
+        Vector3 cameraForward = _origin.Camera.transform.forward;
+        Vector3 targetForward = _playerPosition.forward;
+
+        float angle = Vector3.Angle(cameraForward, targetForward);
+
+        Vector3 cross = Vector3.Cross(cameraForward, targetForward);
+        if (Vector3.Dot(cross, Vector3.up) < 0)
+        {
+            angle = -angle;
+        }
+
+
+
+        _origin.RotateAroundCameraUsingOriginUp(angle);
+
+        //Transform cameraTransform = _origin.Camera.transform;
+        //Vector3 cameraOffset = cameraTransform.position - _origin.transform.position;
+
+        //_origin.transform.position = _playerPosition.position - cameraOffset;
+
 
     }
 
