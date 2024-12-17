@@ -412,10 +412,10 @@ public class ZombieController : MonoBehaviour
         return false;
     }
 
-    private Vector3 RandomPointOnDonat(float innerRadius, float outerRadius)
+    private Vector3 RandomPointOnDonat(float innerRadiusRatio, float outerRadius)
     {
         float angle = UnityEngine.Random.Range(0f, 2 * Mathf.PI);
-        float radius = Mathf.Sqrt(UnityEngine.Random.Range(innerRadius * innerRadius, outerRadius * outerRadius));
+        float radius = Mathf.Sqrt(UnityEngine.Random.Range(innerRadiusRatio * innerRadiusRatio, outerRadius * outerRadius));
 
         float x = radius * Mathf.Cos(angle);
         float z = radius * Mathf.Sin(angle);
