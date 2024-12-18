@@ -88,6 +88,7 @@ public class CrowdOperator : MonoBehaviour
                 points[t] = OffsetPoints[i] + WayPoints[t].position;
             }
 
+            comp.OriginalWayPoints = WayPoints;
             comp.wayPoints = points;
             //Personas[i].SetActive(false);
         }
