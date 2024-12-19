@@ -9,6 +9,8 @@ public class PhoneSpawner : MonoBehaviour
 
     void Start()
     {
+        phonePrefab.SetActive(false);
+
         actionSpawnPhone.action.performed += AppearObject;
     }
 

@@ -984,24 +984,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "DespawnTutorialPhone",
-                    "type": "Button",
-                    "id": "b6f62c3e-0ebd-4b92-9534-c09a22aa76b6",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DespawnTutorialMovementLeft",
-                    "type": "Button",
-                    "id": "5122b14f-7915-4aae-9fc0-c0b8a16a983d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1299,28 +1281,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpawnPhone",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ea062b2d-d35c-4427-9b04-0f35b1ac10ab",
-                    "path": "<XRController>/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DespawnTutorialPhone",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c61fac89-e6be-4a7b-aad5-1758f2a70997",
-                    "path": "<XRController>{LeftHand}/gripPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DespawnTutorialMovementLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

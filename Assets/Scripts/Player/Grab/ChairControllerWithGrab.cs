@@ -29,18 +29,8 @@ public class ChairControllerWithGrab : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
 
-        //_origin.MoveCameraToWorldLocation(_playerPosition.position);
-
-
         StartCoroutine(ResetPos());
-        //need to test
-        //Camera camera = GameObject.FindAnyObjectByType<Camera>();
-        //camera.enabled = false;
-        //camera.transform.rotation = _playerPosition.rotation;
-        //camera.enabled = true;
-        //
-
-        //_origin.RotateAroundCameraPosition();
+        
     }
 
 
@@ -62,16 +52,7 @@ public class ChairControllerWithGrab : MonoBehaviour
             angle = -angle;
         }
 
-
-
         _origin.RotateAroundCameraUsingOriginUp(angle);
-
-        //Transform cameraTransform = _origin.Camera.transform;
-        //Vector3 cameraOffset = cameraTransform.position - _origin.transform.position;
-
-        //_origin.transform.position = _playerPosition.position - cameraOffset;
-
-
     }
 
     private void FixedUpdate()

@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
@@ -24,16 +25,28 @@ public class ChairController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        StartCoroutine(ResetPos());
+    }
+
+    IEnumerator ResetPos()
+    {
+        yield return new WaitForSeconds(.01f);
         _origin.MoveCameraToWorldLocation(_playerPosition.position);
 
-        //need to test
-        Camera camera = GameObject.FindAnyObjectByType<Camera>();
-        camera.enabled = false;
-        camera.transform.rotation = _playerPosition.rotation;
-        camera.enabled = true;
-        //
-        
-        //_origin.RotateAroundCameraPosition();
+        yield return new WaitForSeconds(.01f);
+
+        Vector3 cameraForward = _origin.Camera.transform.forward;
+        Vector3 targetForward = _playerPosition.forward;
+
+        float angle = Vector3.Angle(cameraForward, targetForward);
+
+        Vector3 cross = Vector3.Cross(cameraForward, targetForward);
+        if (Vector3.Dot(cross, Vector3.up) < 0)
+        {
+            angle = -angle;
+        }
+
+        _origin.RotateAroundCameraUsingOriginUp(angle);
     }
 
 
