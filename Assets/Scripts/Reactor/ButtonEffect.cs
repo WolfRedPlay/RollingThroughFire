@@ -7,6 +7,7 @@ public class ButtonPress : MonoBehaviour
     public Vector3 defaultPosition;  // Define the position when the button is not pressed
     public float pressSpeed = 5f;    // Speed of button movement
     public DestroyReactor destroyReactor;
+    [SerializeField] private ReactorActivation reactorActivation;
 
 
     private bool isPressed = false;  // Tracks if the button is pressed
@@ -18,7 +19,8 @@ public class ButtonPress : MonoBehaviour
         {
             isPressed = true;
             Debug.Log("Button Pressed!");
-            destroyReactor.BreakGlass();
+            //destroyReactor.BreakGlass();
+            reactorActivation.ActivateReactor();
 
             // Add logic for what happens when the button is pressed
         }
