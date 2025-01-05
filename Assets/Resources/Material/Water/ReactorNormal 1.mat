@@ -132,7 +132,7 @@ Material:
     - _Surface: 0
     - _Time: 0
     - _Transparency: 0.762
-    - _Velocity: 0.1
+    - _Velocity: 2.86
     - _WaveSpeed: 0.1
     - _WaveStrength: 13.5
     - _WorkflowMode: 1
