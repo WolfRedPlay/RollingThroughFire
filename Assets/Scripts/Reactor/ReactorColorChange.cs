@@ -32,10 +32,6 @@ public class ReactorMaterialController : MonoBehaviour
 
     private void Start()
     {
-        if (reactorRenderer != null)
-        {
-            reactorMaterial = reactorRenderer.material;
-        }
 
         if (reactorSpotlight == null)
         {
@@ -45,17 +41,18 @@ public class ReactorMaterialController : MonoBehaviour
 
     private void Update()
     {
-        if (reactorMaterial != null && temperatureManager != null)
+
+        if (temperatureManager != null)
         {
             UpdateMaterialColors();
         }
 
-        if (reactorSpotlight != null && temperatureManager != null)
+        if (temperatureManager != null)
         {
             UpdateLightProperties();
         }
 
-        if (reactorMaterial != null && temperatureManager != null)
+        if (temperatureManager != null)
         {
             UpdateFresnelPower();
         }
@@ -63,6 +60,8 @@ public class ReactorMaterialController : MonoBehaviour
 
     private void UpdateMaterialColors()
     {
+        Material mat = reactorRenderer.material;
+
         float normalizedTemp = Mathf.InverseLerp(
             temperatureManager.MinTemperature,
             temperatureManager.MaxTemperature,
@@ -72,14 +71,14 @@ public class ReactorMaterialController : MonoBehaviour
         Color currentDeepColor = Color.Lerp(coldDeepColor, hotDeepColor, normalizedTemp);
         Color currentShallowColor = Color.Lerp(coldShallowColor, hotShallowColor, normalizedTemp);
 
-        if (reactorMaterial.HasProperty(deepWaterColorProperty))
+        if (mat.HasProperty(deepWaterColorProperty))
         {
-            reactorMaterial.SetColor(deepWaterColorProperty, currentDeepColor);
+            mat.SetColor(deepWaterColorProperty, currentDeepColor);
         }
 
-        if (reactorMaterial.HasProperty(shallowWaterColorProperty))
+        if (mat.HasProperty(shallowWaterColorProperty))
         {
-            reactorMaterial.SetColor(shallowWaterColorProperty, currentShallowColor);
+            mat.SetColor(shallowWaterColorProperty, currentShallowColor);
         }
 
      
@@ -113,6 +112,8 @@ public class ReactorMaterialController : MonoBehaviour
     }
     private void UpdateFresnelPower()
     {
+        Material mat = reactorRenderer.material;
+
         float normalizedTemp = Mathf.InverseLerp(
             temperatureManager.MinTemperature,
             temperatureManager.MaxTemperature,
@@ -122,9 +123,9 @@ public class ReactorMaterialController : MonoBehaviour
         // Calculate Fresnel Power based on temperature
         float currentFresnelPower = Mathf.Lerp(minFresnelPower, maxFresnelPower, normalizedTemp);
 
-        if (reactorMaterial.HasProperty(fresnelPower))
+        if (mat.HasProperty(fresnelPower))
         {
-            reactorMaterial.SetFloat(fresnelPower, currentFresnelPower);
+            mat.SetFloat(fresnelPower, currentFresnelPower);
         }
     }
 }
