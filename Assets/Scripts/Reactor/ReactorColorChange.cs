@@ -6,6 +6,7 @@ public class ReactorMaterialController : MonoBehaviour
     [SerializeField] private Renderer reactorRenderer; // Assign the reactor renderer here
     [SerializeField] private string deepWaterColorProperty; // Replace with correct property name
     [SerializeField] private string shallowWaterColorProperty; // Replace with correct property name
+    [SerializeField] private string electricColorProperty; // Replace with correct property name
     [SerializeField] private string fresnelPower; // Replace with correct property name
 
 
@@ -15,6 +16,8 @@ public class ReactorMaterialController : MonoBehaviour
     [SerializeField] private Color hotDeepColor = new Color(1f, 0.5f, 0f);
     [SerializeField] private Color coldShallowColor = Color.blue;
     [SerializeField] private Color hotShallowColor = Color.red;
+    [SerializeField] private Color hotElectricColor = new Color(1f, 0.5f, 0f);
+    [SerializeField] private Color coldElectricColor = new Color(1f, 0.5f, 0f);
     [SerializeField] private float minFresnelPower = 1f;
     [SerializeField] private float maxFresnelPower = 5f;
 
@@ -70,6 +73,8 @@ public class ReactorMaterialController : MonoBehaviour
 
         Color currentDeepColor = Color.Lerp(coldDeepColor, hotDeepColor, normalizedTemp);
         Color currentShallowColor = Color.Lerp(coldShallowColor, hotShallowColor, normalizedTemp);
+        Color currentElectricColor = Color.Lerp(coldElectricColor, hotElectricColor, normalizedTemp);
+
 
         if (mat.HasProperty(deepWaterColorProperty))
         {
@@ -79,6 +84,11 @@ public class ReactorMaterialController : MonoBehaviour
         if (mat.HasProperty(shallowWaterColorProperty))
         {
             mat.SetColor(shallowWaterColorProperty, currentShallowColor);
+        }
+
+        if (mat.HasProperty(electricColorProperty))
+        {
+            mat.SetColor(electricColorProperty, currentElectricColor);
         }
 
      

@@ -12508,14 +12508,17 @@ MonoBehaviour:
   reactorRenderer: {fileID: 1005277176}
   deepWaterColorProperty: _DeepColor
   shallowWaterColorProperty: _ShallowColor
+  electricColorProperty: _BaseColor
   fresnelPower: _Velocity
   temperatureManager: {fileID: 1005277179}
   coldDeepColor: {r: 0, g: 1, b: 1, a: 1}
-  hotDeepColor: {r: 1, g: 0.5, b: 0, a: 1}
-  coldShallowColor: {r: 0, g: 0, b: 1, a: 1}
+  hotDeepColor: {r: 1, g: 0.16315271, b: 0, a: 1}
+  coldShallowColor: {r: 0, g: 1, b: 1, a: 1}
   hotShallowColor: {r: 1, g: 0, b: 0, a: 1}
+  hotElectricColor: {r: 1, g: 0.22428387, b: 0, a: 1}
+  coldElectricColor: {r: 0, g: 0.9960785, b: 0.9960785, a: 1}
   minFresnelPower: 0
-  maxFresnelPower: 200
+  maxFresnelPower: 1.5
   reactorSpotlight: {fileID: 111034938}
   coldLightColor: {r: 0.02352941, g: 0.55298394, b: 1, a: 1}
   midLightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
