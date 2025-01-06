@@ -3,6 +3,7 @@ using Unity.XR.CoreUtils;
 using UnityEditor.XR.LegacyInputHelpers;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ChairController : MonoBehaviour
 {
     [Header("Hand Inputs")]
