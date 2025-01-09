@@ -1,4 +1,7 @@
 using UnityEngine;
+using TMPro;
+using System.Xml;
+
 
 public class ButtonPress : MonoBehaviour
 {
@@ -6,8 +9,18 @@ public class ButtonPress : MonoBehaviour
     public Vector3 pressedPosition;  // Define the position when the button is pressed
     public Vector3 defaultPosition;  // Define the position when the button is not pressed
     public float pressSpeed = 5f;    // Speed of button movement
-    public DestroyReactor destroyReactor;
+    public ReactorTemperatureManager temperatureManager;
     [SerializeField] private ReactorActivation reactorActivation;
+
+    [SerializeField] private TextMeshProUGUI reactorOffText;
+    [SerializeField] private TextMeshProUGUI reactorOffText2;
+    [SerializeField] private TextMeshProUGUI reactorOffText3;
+
+    [SerializeField] private TextMeshProUGUI reactorOnText;
+    [SerializeField] private TextMeshProUGUI reactorOnText2;
+    [SerializeField] private TextMeshProUGUI reactorOnText3;
+
+
 
 
     private bool isPressed = false;  // Tracks if the button is pressed
@@ -21,6 +34,20 @@ public class ButtonPress : MonoBehaviour
             Debug.Log("Button Pressed!");
             //destroyReactor.BreakGlass();
             reactorActivation.ActivateReactor();
+            temperatureManager.ActivateTemperatureManager();
+            reactorOffText.gameObject.SetActive(false);
+
+            reactorOnText.gameObject.SetActive(true);
+            reactorOnText2.gameObject.SetActive(true);
+            reactorOnText3.gameObject.SetActive(true);
+
+            reactorOffText2.gameObject.SetActive(false);
+            reactorOffText3.gameObject.SetActive(false);
+
+
+
+
+
 
             // Add logic for what happens when the button is pressed
         }

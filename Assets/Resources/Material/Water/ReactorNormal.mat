@@ -132,13 +132,13 @@ Material:
     - _Surface: 0
     - _Time: 0
     - _Transparency: 0.864
-    - _Velocity: 0.1
+    - _Velocity: 0
     - _WaveSpeed: 0.33
     - _WaveStrength: -0.15
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.91636705, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DeepColor: {r: 0, g: 0.93155813, b: 1, a: 1}
     - _ElectricColor: {r: 0.09999997, g: 0.8, b: 1, a: 1}
