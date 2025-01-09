@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Ramp : MonoBehaviour
 {
     [SerializeField] Vector3 _direction;
@@ -16,7 +17,7 @@ public class Ramp : MonoBehaviour
 
     private void Start()
     {
-        _direction = transform.InverseTransformDirection(_direction);
+        _direction = transform.TransformDirection(_direction);
     }
 
     private void OnTriggerStay(Collider other)
@@ -25,6 +26,12 @@ public class Ramp : MonoBehaviour
         {
             other.attachedRigidbody.AddForce(_direction * _force * Time.fixedDeltaTime);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, _direction);
     }
 
 
