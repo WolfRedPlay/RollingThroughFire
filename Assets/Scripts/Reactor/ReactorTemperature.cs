@@ -43,8 +43,8 @@ public class ReactorTemperatureManager : MonoBehaviour
     }
 
     // Optional: Debugging output for testing
-    private void Update()
-    {
-        Debug.Log($"Current Temperature: {currentTemperature}");
-    }
+    //private void Update()
+    //{
+    //    Debug.Log($"Current Temperature: {currentTemperature}");
+    //}
 }
