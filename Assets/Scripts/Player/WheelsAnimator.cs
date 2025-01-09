@@ -44,7 +44,11 @@ public class WheelsAnimator : MonoBehaviour
 
     private void RotateWheel(Transform wheel, float angularSpeed)
     {
-        if (!wheel) return;
+        if (!wheel)
+        {
+            Debug.LogError("Wheel is not assigned");
+            return;
+        }
         wheel.Rotate(Vector3.right, angularSpeed * Mathf.Rad2Deg * Time.fixedDeltaTime);
     }
 

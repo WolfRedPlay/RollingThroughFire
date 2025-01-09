@@ -37,10 +37,11 @@ public class ChairController : MonoBehaviour
 
     IEnumerator ResetPos()
     {
-        yield return new WaitForSeconds(.01f);
+        yield return new WaitForSeconds(1f);
         _origin.MoveCameraToWorldLocation(_playerPosition.position);
 
-        yield return new WaitForSeconds(.01f);
+
+        yield return new WaitForSeconds(1f);
 
         Vector3 cameraForward = _origin.Camera.transform.forward;
         Vector3 targetForward = _playerPosition.forward;
@@ -54,6 +55,7 @@ public class ChairController : MonoBehaviour
         }
 
         _origin.RotateAroundCameraUsingOriginUp(angle);
+
     }
 
     private void FixedUpdate()
