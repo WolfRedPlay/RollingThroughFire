@@ -11,6 +11,10 @@ public class LeverTemperatureControl : MonoBehaviour
     [SerializeField] private ReactorTemperatureManager reactorTemperatureManager; // Reference to the temperature manager
     [SerializeField] private float minTemperatureChange = 0f; // Minimum temperature change
     [SerializeField] private float maxTemperatureChange = 100f; // Maximum temperature change
+    [SerializeField] private float minPowerChange = 0.1f; // Minimum temperature change
+    [SerializeField] private float maxPowerChange = 0.7f; // Maximum temperature change
+
+
 
     private void Update()
     {
@@ -36,6 +40,8 @@ public class LeverTemperatureControl : MonoBehaviour
         // Map the angle to the temperature range
         float normalizedAngle = Mathf.InverseLerp(minAngle, maxAngle, currentAngle);
         float temperatureChange = Mathf.Lerp(minTemperatureChange, maxTemperatureChange, normalizedAngle);
+        float powerChange = Mathf.Lerp(minPowerChange, maxPowerChange, normalizedAngle);
+
 
         // Update the reactor temperature
         reactorTemperatureManager.IncreaseTemperature(temperatureChange * Time.deltaTime);
