@@ -14,12 +14,14 @@ public class ReactorOverheatHandler : MonoBehaviour
     [SerializeField] private GameObject brokenGlassReactorOutside; // The GameObject to toggle
     [SerializeField] private GameObject normalGlassReactorOutside; // The GameObject to toggle
     [SerializeField] private GameObject normalReactorGlass; // The GameObject to toggle
+    [SerializeField] private GameObject explosionPlasma; // The GameObject to toggle
+    [SerializeField] private GameObject explosionPlasma2; // The GameObject to toggle
+    [SerializeField] private GameObject explosionFire; // The GameObject to toggle
+
     [SerializeField] private float overheatThreshold = 1800f; // Temperature threshold for overheat
     [SerializeField] private float delay = 5f; // Delay in seconds for toggling objects
-
-   
-    
-
+    [SerializeField] private float delay2 = 1f; // Delay in seconds for toggling objects
+    [SerializeField] private float delay3 = 1.5f; // Delay in seconds for toggling objects
 
 
     /// <summary>
@@ -37,9 +39,8 @@ public class ReactorOverheatHandler : MonoBehaviour
         if (reactorTemperatureManager.CurrentTemperature > overheatThreshold)
         {
             // Immediate changes
-            brokenGlassReactorInside.SetActive(true);
-            normalReactorGlass.SetActive(false);
-
+            StartCoroutine(FirstExplosionDelay());
+            explosionPlasma.SetActive(true);
 
             // Change the reactor material color
             if (reactorMaterial.HasProperty(targetMaterialProperty))
@@ -52,7 +53,7 @@ public class ReactorOverheatHandler : MonoBehaviour
             }
 
             // Delayed changes for specific objects
-            StartCoroutine(ToggleObjectsAfterDelay());
+            StartCoroutine(SecondExplosionDelay());
         }
         else
         {
@@ -60,22 +61,43 @@ public class ReactorOverheatHandler : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Coroutine to toggle specific objects after a delay.
-    /// </summary>
-    private IEnumerator ToggleObjectsAfterDelay()
+    private IEnumerator FirstExplosionDelay()
+    {
+        yield return new WaitForSeconds(delay2);
+
+        // Toggle specific objects
+        brokenGlassReactorInside.SetActive(true);
+        normalReactorGlass.SetActive(false);
+        explosionPlasma2.SetActive(true);
+
+        Debug.Log("Toggled objects after delay.");
+    }
+    private IEnumerator SecondExplosionDelay()
     {
         yield return new WaitForSeconds(delay);
 
         // Toggle specific objects
         normalGlassReactorOutside.SetActive(false);
         brokenGlassReactorOutside.SetActive(true);
+        explosionFire.SetActive(true);
+
+        Debug.Log("Toggled objects after delay.");
+        StartCoroutine(DeactivateExplosionsDelay());
+
+    }
+
+    private IEnumerator DeactivateExplosionsDelay()
+    {
+        yield return new WaitForSeconds(delay3);
+
+        // Toggle specific objects
+        explosionFire.SetActive(false);
+
         Debug.Log("Toggled objects after delay.");
     }
 
-   
 
-    
+
 
 
 }
