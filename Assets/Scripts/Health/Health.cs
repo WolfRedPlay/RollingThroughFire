@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    public float CurrentHealth;
+     public float CurrentHealth;
     public float MaxHealth = 100;
     [SerializeField] private bool Invincible = false;
 

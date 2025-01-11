@@ -6,6 +6,7 @@ public class HealthPostProcsController : MonoBehaviour
 {
     [SerializeField] Volume volume;
     [SerializeField] float bounceRatio = 0.1f;
+    [SerializeField] float Speed = 1;
     private Health healthComp;
     private Vignette vignette;
 
@@ -33,7 +34,7 @@ public class HealthPostProcsController : MonoBehaviour
 
             if (healthPercentage > 0)
             {
-                float bounceValue = Mathf.Sin(Time.time) * bounceRatio;
+                float bounceValue = Mathf.Sin(Time.time * Speed) * bounceRatio;
 
                 healthPercentage = Mathf.Clamp01(healthPercentage + bounceValue);
                 //healthPercentage = 1 - healthPercentage;
