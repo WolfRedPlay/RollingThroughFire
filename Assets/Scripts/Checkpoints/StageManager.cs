@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StageManager : MonoBehaviour, IDataPersistence
+{
+    [Header("Level Stages")]
+    [SerializeField] List<Stage> _stages;
+
+    int _currentStageIndex = -1;
+
+    public void LoadData(GameData data)
+    {
+        _currentStageIndex = data.CurrentStage;
+        if (_currentStageIndex != -1)
+            _stages[_currentStageIndex].LoadStage();
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.CurrentStage = _currentStageIndex;
+        if (_currentStageIndex != -1)
+        {
+            data.PlayerPosition = _stages[_currentStageIndex].Checkpoint.SaveTransform.position;
+            data.PlayerRotation = _stages[_currentStageIndex].Checkpoint.SaveTransform.rotation;
+        }
+
+    }
+
+    void Start()
+    {
+        foreach (var stage in _stages) 
+        { 
+            stage.Initialize();
+            stage.OnStageStarted.AddListener(SwitchCurrentStage);
+
+            DataPersistenceManager dataManager = FindAnyObjectByType<DataPersistenceManager>();
+            stage.OnStageStarted.AddListener(dataManager.SaveGame);
+
+            stage.Checkpoint.SetCheckpointActive(false);
+        }
+
+        _stages[0].Checkpoint.SetCheckpointActive(true);
+    }
+
+    private void SwitchCurrentStage()
+    {
+        _currentStageIndex++;
+    }
+
+    void Update()
+    {
+        
+    }
+}

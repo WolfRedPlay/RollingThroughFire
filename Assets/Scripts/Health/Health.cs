@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
         }
     }
     
-    private void Death()
+    public void Death()
     {
         //After death event
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
