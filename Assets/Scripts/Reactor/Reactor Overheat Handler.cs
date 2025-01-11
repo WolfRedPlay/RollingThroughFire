@@ -14,6 +14,11 @@ public class ReactorOverheatHandler : MonoBehaviour
     [SerializeField] private GameObject brokenGlassReactorOutside; // The GameObject to toggle
     [SerializeField] private GameObject normalGlassReactorOutside; // The GameObject to toggle
     [SerializeField] private GameObject normalReactorGlass; // The GameObject to toggle
+    [SerializeField] private GameObject normalPipe1; // The GameObject to toggle
+    [SerializeField] private GameObject normalPipe2; // The GameObject to toggle
+    [SerializeField] private GameObject destroyedPipe1; // The GameObject to toggle
+    [SerializeField] private GameObject destroyedPipe2; // The GameObject to toggle
+
     [SerializeField] private GameObject explosionPlasma; // The GameObject to toggle
     [SerializeField] private GameObject explosionPlasma2; // The GameObject to toggle
     [SerializeField] private GameObject explosionFire; // The GameObject to toggle
@@ -69,6 +74,14 @@ public class ReactorOverheatHandler : MonoBehaviour
         brokenGlassReactorInside.SetActive(true);
         normalReactorGlass.SetActive(false);
         explosionPlasma2.SetActive(true);
+        destroyedPipe1.SetActive(true);
+        destroyedPipe2.SetActive(true);
+        normalPipe1.SetActive(false);
+        normalPipe2.SetActive(false);
+
+
+
+
 
         Debug.Log("Toggled objects after delay.");
     }

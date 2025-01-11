@@ -37,6 +37,12 @@ public class ReactorTemperatureManager : MonoBehaviour
     {
         if (!isActive) return; // Ensure temperature changes only if active
         currentTemperature = Mathf.Clamp(currentTemperature + amount, minTemperature, maxTemperature);
+
+    }
+
+    public void IncreasePower(float amount)
+    {
+        if (!isActive) return; // Ensure temperature changes only if active
         currentPower = Mathf.Clamp(currentPower + amount, minPower, maxPower);
 
     }
@@ -46,6 +52,11 @@ public class ReactorTemperatureManager : MonoBehaviour
     {
         if (!isActive) return; // Ensure temperature changes only if active
         currentTemperature = Mathf.Clamp(currentTemperature - amount, minTemperature, maxTemperature);
+
+    }
+    public void DecreasePower(float amount)
+    {
+        if (!isActive) return; // Ensure temperature changes only if active
         currentPower = Mathf.Clamp(currentPower - amount, minPower, maxPower);
 
     }

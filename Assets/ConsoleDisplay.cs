@@ -21,7 +21,7 @@ public class ConsoleDisplay : MonoBehaviour
         // Update the TMP text with the current temperature value
         temperatureText.text = $"{temperature:F2}";
         temperatureText2.text = $"{temperature:F2}";
-        temperatureText2.text = $"{power:F2}";
+        powerText.text = $"{power:F2}";
 
 
     }

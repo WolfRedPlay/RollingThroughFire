@@ -45,5 +45,6 @@ public class LeverTemperatureControl : MonoBehaviour
 
         // Update the reactor temperature
         reactorTemperatureManager.IncreaseTemperature(temperatureChange * Time.deltaTime);
+        reactorTemperatureManager.IncreasePower(powerChange * Time.deltaTime);
     }
 }
