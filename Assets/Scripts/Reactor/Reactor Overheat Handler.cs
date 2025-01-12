@@ -18,8 +18,12 @@ public class ReactorOverheatHandler : MonoBehaviour
     [SerializeField] private GameObject normalReactorGlass; // The GameObject to toggle
     [SerializeField] private GameObject normalPipe1; // The GameObject to toggle
     [SerializeField] private GameObject normalPipe2; // The GameObject to toggle
+    [SerializeField] private GameObject normalPipe3; // The GameObject to toggle
+    [SerializeField] private GameObject normalPipe4; // The GameObject to toggle
     [SerializeField] private GameObject destroyedPipe1; // The GameObject to toggle
     [SerializeField] private GameObject destroyedPipe2; // The GameObject to toggle
+    [SerializeField] private GameObject destroyedPipe3; // The GameObject to toggle
+    [SerializeField] private GameObject destroyedPipe4; // The GameObject to toggle
 
     [SerializeField] private GameObject explosionPlasma; // The GameObject to toggle
     [SerializeField] private GameObject explosionPlasma2; // The GameObject to toggle
@@ -96,8 +100,13 @@ public class ReactorOverheatHandler : MonoBehaviour
         explosionPlasma2.SetActive(true);
         destroyedPipe1.SetActive(true);
         destroyedPipe2.SetActive(true);
+        destroyedPipe3.SetActive(true);
+        destroyedPipe4.SetActive(true);
+
         normalPipe1.SetActive(false);
         normalPipe2.SetActive(false);
+        normalPipe3.SetActive(false);
+        normalPipe4.SetActive(false);
 
 
 
