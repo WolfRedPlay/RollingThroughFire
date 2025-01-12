@@ -10,6 +10,8 @@ public class ConsoleDisplay : MonoBehaviour
 
 
     [SerializeField] private ReactorTemperatureManager reactor; // Drag your reactor object here (or script managing the temperature)
+    [SerializeField] private GameObject prototypeFriendlyText;
+    [SerializeField] private GameObject notPrototypeFriendlyText;
 
     void Update()
     {
@@ -23,6 +25,11 @@ public class ConsoleDisplay : MonoBehaviour
         temperatureText2.text = $"{temperature:F2}";
         powerText.text = $"{power:F2}";
 
+        if (reactor.CurrentTemperature > 1800)
+        {
+            prototypeFriendlyText.SetActive(true);
+            notPrototypeFriendlyText.SetActive(false);
 
+        }
     }
 }

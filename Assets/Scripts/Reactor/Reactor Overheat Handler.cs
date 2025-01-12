@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
+
 
 public class ReactorOverheatHandler : MonoBehaviour
 {
@@ -23,10 +25,20 @@ public class ReactorOverheatHandler : MonoBehaviour
     [SerializeField] private GameObject explosionPlasma2; // The GameObject to toggle
     [SerializeField] private GameObject explosionFire; // The GameObject to toggle
 
-    [SerializeField] private float overheatThreshold = 1800f; // Temperature threshold for overheat
+    public float overheatThreshold = 1800f; // Temperature threshold for overheat
     [SerializeField] private float delay = 5f; // Delay in seconds for toggling objects
     [SerializeField] private float delay2 = 1f; // Delay in seconds for toggling objects
     [SerializeField] private float delay3 = 1.5f; // Delay in seconds for toggling objects
+
+    [SerializeField] private GameObject prototypeFriendlyText;
+    [SerializeField] private GameObject notPrototypeFriendlyText;
+
+    [SerializeField] private GameObject notHotEnoughSystemMessage;
+    [SerializeField] private GameObject warningSystemMessage;
+
+
+
+
 
 
     /// <summary>
@@ -46,6 +58,13 @@ public class ReactorOverheatHandler : MonoBehaviour
             // Immediate changes
             StartCoroutine(FirstExplosionDelay());
             explosionPlasma.SetActive(true);
+            prototypeFriendlyText.SetActive(true);
+            notPrototypeFriendlyText.SetActive(false);
+            warningSystemMessage.SetActive(true) ;
+            notHotEnoughSystemMessage.SetActive(false);
+
+
+
 
             // Change the reactor material color
             if (reactorMaterial.HasProperty(targetMaterialProperty))
@@ -63,6 +82,7 @@ public class ReactorOverheatHandler : MonoBehaviour
         else
         {
             Debug.Log("Reactor temperature is below the threshold. Action not performed.");
+            notHotEnoughSystemMessage.SetActive(true);
         }
     }
 
