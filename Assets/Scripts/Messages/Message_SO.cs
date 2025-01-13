@@ -1,10 +1,14 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Message", menuName = "Message")]
-public class Message : ScriptableObject
+public class Message_SO : ScriptableObject
 {
     [Tooltip("The text of message that will be shown")]
     [SerializeField] [TextArea] string _text;
 
-    public string Text { get { return _text; } }
+    [SerializeField] Contact _contactToSend;
+
+
+    public Contact Contact => _contactToSend;
+    public string Text => _text;
 }
