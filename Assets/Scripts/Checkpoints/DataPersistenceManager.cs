@@ -11,16 +11,16 @@ public class DataPersistenceManager : MonoBehaviour
     [SerializeField] private string fileName = "";
 
     [Header("Scenes of levels")]
-    [SerializeField]List<SceneAsset> _levelScenes;
+    //[SerializeField]List<SceneAsset> _levelScenes;
     GameData _gameData;
     List<IDataPersistence> _dataPersistenceObjects;
     FileDataHandler _fileDataHandler;
-
+    
 
     public static DataPersistenceManager Instance { get; private set; }
 
 
-    private void Awake()
+    /*private void Awake()
     {
         if (Instance != null)
         {
@@ -33,6 +33,7 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
     }
+    */
 
 
     void Start()
@@ -41,7 +42,7 @@ public class DataPersistenceManager : MonoBehaviour
         _fileDataHandler = new FileDataHandler(Application.dataPath, fileName);
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        if (_levelScenes.Find(x => x.name == SceneManager.GetActiveScene().name) != null)
+        //if (_levelScenes.Find(x => x.name == SceneManager.GetActiveScene().name) != null)
             NewGame();
     }
 
@@ -53,7 +54,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (_levelScenes.Find(x => x.name == scene.name) != null)
+        //if (_levelScenes.Find(x => x.name == scene.name) != null)
             LoadGame();
     }
 
