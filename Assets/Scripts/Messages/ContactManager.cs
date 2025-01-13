@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -78,15 +79,16 @@ public class ContactManager : MonoBehaviour
     public void OpenChat()
     {
         if (_chatManager == null) return;
-        _chatManager.OpenChat(_name);
         foreach (Message message in _messages)
         {
             _chatManager.AddMessage(message);
         }
+        _chatManager.OpenChat(_name);
         _chatManager.Activate();
     }
 }
 
+[Serializable]
 public class Message
 {
     public Message(string text)
@@ -97,10 +99,6 @@ public class Message
 
     public string Text;
     public bool IsRead;
-    public void SetMessageRead()
-    {
-        IsRead = true;
-    }
 }
 
 public enum Contact

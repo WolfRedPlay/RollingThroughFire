@@ -13,7 +13,7 @@ public class MessageBox : MonoBehaviour
     RectTransform _transform;
 
     Message _messageData;
-    bool _isActive;
+    public Message Message => _messageData;
 
     private void Start()
     {
@@ -25,42 +25,35 @@ public class MessageBox : MonoBehaviour
         _messageData = messageData;
         _textField.text = _messageData.Text;
         _viewportTransform = viewport;
-        _isActive = false;
-        StartCoroutine(Activate());
     }
 
-    IEnumerator Activate()
-    {
-        yield return new WaitForSeconds(1f);
-        _isActive = true;
-    }
 
     public void CheckIfMessageRead()
     {
-        if (!_messageData.IsRead)
+        if (_messageData.IsRead) return;
+        
+        Vector3[] viewPortCorners = new Vector3[4];
+        _viewportTransform.GetLocalCorners(viewPortCorners);
+
+        Rect viewportRect = CreateRectFromPoints(viewPortCorners);
+
+        Vector3[] corners = new Vector3[4];
+        _transform.GetLocalCorners(corners);
+
+        List<Vector3> cornersToCheck = FindCornersToCheck(corners);
+
+        foreach (Vector3 corner in cornersToCheck)
         {
-            Vector3[] viewPortCorners = new Vector3[4];
-            _viewportTransform.GetLocalCorners(viewPortCorners);
+            Vector3 viewportLocalPoint = _viewportTransform.InverseTransformPoint(corner);
 
-            Rect viewportRect = CreateRectFromPoints(viewPortCorners);
-
-            Vector3[] corners = new Vector3[4];
-            _transform.GetLocalCorners(corners);
-
-            List<Vector3> cornersToCheck = FindCornersToCheck(corners);
-
-            foreach (Vector3 corner in cornersToCheck)
+            if (viewportRect.Contains(viewportLocalPoint))
             {
-                Vector3 viewportLocalPoint = _viewportTransform.InverseTransformPoint(corner);
-
-                if (viewportRect.Contains(viewportLocalPoint))
-                {
-                    _messageData.IsRead = true;
-                    Debug.Log("Message read");
-                    break;
-                }
+                _messageData.IsRead = true;
+                Debug.Log("Message read");
+                break;
             }
         }
+       
         
     }
 
