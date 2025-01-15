@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Fence
+    second: {fileID: 2100000, guid: df7922b37030f1f47b6bca9b9ba62557, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Floor
     second: {fileID: 2100000, guid: 075f57dbf42065b44b927d7f8ece0b71, type: 2}
   - first:
@@ -14,6 +19,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Glass
     second: {fileID: 2100000, guid: 369dafdac82ba8746b949b3e47b97aab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: 316ecda1e4bc59e42892eb9ada7bdb35, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
