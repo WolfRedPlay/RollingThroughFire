@@ -89,12 +89,12 @@ public class ContactManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        _messages = data.MessagesList[_contact];
+        _messages = data.GetMessagesForContact(_contact);
     }
 
     public void SaveData(ref GameData data)
     {
-        data.MessagesList[_contact] = _messages;
+        data.AssignMessagesToContact(_contact, _messages);
     }
 }
 

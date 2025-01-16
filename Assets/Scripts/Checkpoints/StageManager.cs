@@ -39,10 +39,10 @@ public class StageManager : MonoBehaviour, IDataPersistence
         { 
             stage.Initialize();
 
-            DataPersistenceManager dataManager = FindAnyObjectByType<DataPersistenceManager>();
+            DataPersistenceManager dataManager = DataPersistenceManager.Instance;
             stage.OnStageStarted.AddListener(dataManager.SaveGame);
 
-            stage.Checkpoint.SetCheckpointActive(false);
+            if (_currentStageIndex == -1) stage.Checkpoint.SetCheckpointActive(false);
         }
 
         if (_currentStageIndex == -1) _stages[0].Checkpoint.SetCheckpointActive(true);
