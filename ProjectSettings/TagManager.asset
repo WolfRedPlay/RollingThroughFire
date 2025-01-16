@@ -8,7 +8,6 @@ TagManager:
   - Hand
   - PlayerFindPoint
   - Electro
-  - Throwable
   layers:
   - Default
   - TransparentFX
