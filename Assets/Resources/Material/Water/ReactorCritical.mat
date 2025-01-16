@@ -111,10 +111,10 @@ Material:
     - _DstBlendAlpha: 0
     - _ElectricDensity: -0.05
     - _ElectricIntensity: 5
-    - _ElectricRadius: 0.94
+    - _ElectricRadius: 1.01
     - _ElectricSpeed: 2
     - _EnvironmentReflections: 1
-    - _FresnelPower: 0.7
+    - _FresnelPower: 0.77
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -123,7 +123,7 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scale: 1.03
+    - _Scale: 0.91
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -131,14 +131,14 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _Time: 0
-    - _Transparency: 1
-    - _Velocity: 0.82
-    - _WaveSpeed: 0.31
-    - _WaveStrength: 0.47
+    - _Transparency: 0.88
+    - _Velocity: 1.17
+    - _WaveSpeed: -0.45
+    - _WaveStrength: 0.21
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseColor: {r: 1, g: 0.5566037, b: 0.99895513, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DeepColor: {r: 0, g: 0.64116716, b: 1, a: 0}
     - _ElectricColor: {r: 0.09999997, g: 0.8, b: 1, a: 1}

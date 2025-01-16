@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 public class FireManager : MonoBehaviour
 {
@@ -25,9 +26,9 @@ public class FireManager : MonoBehaviour
 
         // Adjust spacing to ensure grid is smaller
         fireStarterSpacing = new Vector3(
-            fireStarterSpacing.x * 5f,
-            fireStarterSpacing.y * 5f,
-            fireStarterSpacing.z * 5f
+            fireStarterSpacing.x * 10f,
+            fireStarterSpacing.y * 10f,
+            fireStarterSpacing.z * 10f
         );
 
         int countX = Mathf.Max(1, Mathf.FloorToInt(bounds.size.x / fireStarterSpacing.x));
