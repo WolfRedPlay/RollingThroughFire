@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ContactManager : MonoBehaviour
+public class ContactManager : MonoBehaviour, IDataPersistence
 {
     [Header("Contact name")]
     [SerializeField] string _name;
@@ -85,6 +85,16 @@ public class ContactManager : MonoBehaviour
         }
         _chatManager.OpenChat(_name);
         _chatManager.Activate();
+    }
+
+    public void LoadData(GameData data)
+    {
+        _messages = data.MessagesList[_contact];
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.MessagesList[_contact] = _messages;
     }
 }
 

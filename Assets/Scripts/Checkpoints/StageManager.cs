@@ -11,6 +11,11 @@ public class StageManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        foreach (var stage in _stages)
+        {
+            stage.Checkpoint.SetCheckpointActive(false);
+        }
+
         _currentStageIndex = data.CurrentStage;
         if (_currentStageIndex != -1)
             _stages[_currentStageIndex].LoadStage();
@@ -18,6 +23,7 @@ public class StageManager : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
+        _currentStageIndex++;
         data.CurrentStage = _currentStageIndex;
         if (_currentStageIndex != -1)
         {
@@ -32,7 +38,6 @@ public class StageManager : MonoBehaviour, IDataPersistence
         foreach (var stage in _stages) 
         { 
             stage.Initialize();
-            stage.OnStageStarted.AddListener(SwitchCurrentStage);
 
             DataPersistenceManager dataManager = FindAnyObjectByType<DataPersistenceManager>();
             stage.OnStageStarted.AddListener(dataManager.SaveGame);
@@ -40,12 +45,7 @@ public class StageManager : MonoBehaviour, IDataPersistence
             stage.Checkpoint.SetCheckpointActive(false);
         }
 
-        _stages[0].Checkpoint.SetCheckpointActive(true);
-    }
-
-    private void SwitchCurrentStage()
-    {
-        _currentStageIndex++;
+        if (_currentStageIndex == -1) _stages[0].Checkpoint.SetCheckpointActive(true);
     }
 
     void Update()
