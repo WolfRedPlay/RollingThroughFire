@@ -1,63 +1,99 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class FireManager : MonoBehaviour
 {
-    [SerializeField] private GameObject mfire;
-    [SerializeField] private GameObject mfirePos;
-    private Vector3 mspawnDirection = Vector3.forward;
-    [SerializeField] private float mspawnInterval = 1f;
-    [SerializeField] private float mspawnDistanceIncrement = 3f;
-    [SerializeField] private int mmaxSpawnCount = 10;
-    private Vector3 mcurrentSpawnPosition;
-    [SerializeField] private int mspawnCount = 0;
-    private Coroutine mspawnCoroutine;
+    public GameObject fireStarterPrefab;
+    public float fireStarterSize = 5f;
+    public Vector3 fireStarterSpacing = new Vector3(5f, 5f, 5f);
+    public float spawnDelay = 0.5f;
 
-    private void Awake()
+    private List<Vector3> firestarterPositions = new List<Vector3>();
+    private HashSet<Vector3> availablePositions = new HashSet<Vector3>();
+    private HashSet<Vector3> visitedPositions = new HashSet<Vector3>();
+
+    private void OnCollisionEnter(Collision collision)
     {
-        mcurrentSpawnPosition = mfirePos.transform.position;
+        StartCoroutine(MapFirestarters(collision.collider));
     }
 
-    public void StartFire()
+    private IEnumerator MapFirestarters(Collider collider)
     {
-        if (mspawnCoroutine == null)
+        Bounds bounds = collider.bounds;
+
+        // Adjust spacing to ensure grid is smaller
+        fireStarterSpacing = new Vector3(
+            fireStarterSpacing.x * 5f,
+            fireStarterSpacing.y * 5f,
+            fireStarterSpacing.z * 5f
+        );
+
+        int countX = Mathf.Max(1, Mathf.FloorToInt(bounds.size.x / fireStarterSpacing.x));
+        int countY = Mathf.Max(1, Mathf.FloorToInt(bounds.size.y / fireStarterSpacing.y));
+        int countZ = Mathf.Max(1, Mathf.FloorToInt(bounds.size.z / fireStarterSpacing.z));
+
+        Debug.Log($"Grid dimensions: {countX}x{countY}x{countZ}");
+
+        for (int x = 0; x < countX; x++)
         {
-            StartCoroutine(SpawnFire());
+            for (int y = 0; y < countY; y++)
+            {
+                for (int z = 0; z < countZ; z++)
+                {
+                    Vector3 position = bounds.min + new Vector3(
+                        x * fireStarterSpacing.x + fireStarterSize / 2,
+                        y * fireStarterSpacing.y + fireStarterSize / 2,
+                        z * fireStarterSpacing.z + fireStarterSize / 2
+                    );
+                    availablePositions.Add(position);
+                }
+            }
+        }
+
+        if (availablePositions.Count == 0)
+        {
+            Debug.LogWarning($"No valid positions calculated for {collider.name}. Check fireStarterSize and object scale.");
+            yield break;
+        }
+
+        Vector3 initialPosition = availablePositions.First();
+        availablePositions.Remove(initialPosition);
+        visitedPositions.Add(initialPosition);
+        Instantiate(fireStarterPrefab, initialPosition, Quaternion.identity);
+
+        yield return StartCoroutine(RandomSpread(initialPosition));
+    }
+
+    private IEnumerator RandomSpread(Vector3 currentPosition)
+    {
+        while (availablePositions.Count > 0)
+        {
+            List<Vector3> neighbors = availablePositions
+                .Where(pos => Vector3.Distance(pos, currentPosition) <= fireStarterSpacing.magnitude * 1.5f)
+                .ToList();
+
+            if (neighbors.Count == 0) break;
+
+            Vector3 nextPosition = neighbors[Random.Range(0, neighbors.Count)];
+            availablePositions.Remove(nextPosition);
+            visitedPositions.Add(nextPosition);
+
+            Instantiate(fireStarterPrefab, nextPosition, Quaternion.identity);
+
+            yield return new WaitForSeconds(spawnDelay);
+
+            currentPosition = nextPosition;
         }
     }
 
-    public void StopFire()
+    private void OnDrawGizmos()
     {
-        if (mspawnCoroutine  != null)
+        Gizmos.color = Color.red;
+        foreach (var position in visitedPositions)
         {
-            StopCoroutine(SpawnFire());
-            mspawnCoroutine = null;
+            Gizmos.DrawWireSphere(position, fireStarterSize / 4);
         }
     }
-
-    private IEnumerator SpawnFire()
-    {
-        while (mspawnCount < mmaxSpawnCount)
-        {
-            Instantiate(mfire, mcurrentSpawnPosition, Quaternion.identity);
-
-            mcurrentSpawnPosition += mspawnDirection.normalized * mspawnDistanceIncrement;
-
-            mspawnCount++;
-
-            yield return new WaitForSeconds(mspawnInterval);
-        }
-
-        mspawnCoroutine = null;
-    }
-
-    public void ResetFire()
-    {
-        mcurrentSpawnPosition = mfirePos.transform.position;
-        mspawnCount = 0;
-        mspawnCoroutine = null;
-    }
-
-    
-
 }
