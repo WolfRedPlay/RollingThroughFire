@@ -13,6 +13,10 @@ public class GameData
     public int CurrentStage;
     #endregion
 
+    #region SETTINGS
+    public bool MovementHelper;
+    #endregion
+
     public List<ContactInfo> ContactsInfo = new List<ContactInfo>();
 
 
@@ -25,6 +29,7 @@ public class GameData
         ContactsInfo.Add(new ContactInfo(Contact.COWORKER));
         ContactsInfo.Add(new ContactInfo(Contact.SUPERVISOR));
         ContactsInfo.Add(new ContactInfo(Contact.CAMPUS));
+        MovementHelper = false;
     }
     
 

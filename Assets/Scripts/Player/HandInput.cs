@@ -15,7 +15,7 @@ public class HandInput : MonoBehaviour
     Vector3 _startHandPosition;
     Transform _handTransform;
     bool _isBreak;
-
+    SettingsHandler _settingsHandler;
 
     public bool IsBreak => _isBreak;
     public void SetBreak(bool value) { _isBreak = value; }
@@ -24,8 +24,9 @@ public class HandInput : MonoBehaviour
 
     void Start()
     {
-        _interactable = GetComponent<XRSimpleInteractable>();
+        _settingsHandler = FindAnyObjectByType<SettingsHandler>(FindObjectsInactive.Include);
 
+        _interactable = GetComponent<XRSimpleInteractable>();
 
         _interactable.firstSelectEntered.AddListener(OnGrabbed);
         _interactable.lastSelectExited.AddListener(OnReleased);
@@ -62,6 +63,7 @@ public class HandInput : MonoBehaviour
             if ((Mathf.Abs(newPosition.z - _startHandPosition.z) > positionThreshold) && !_isBreak)
             {
                 HandMovement = (newPosition.z - _startHandPosition.z) * 80f;
+                if (_settingsHandler.MovementHelper) HandMovement *= 1.5f;
                 _startHandPosition = new Vector3(newPosition.x, newPosition.y, newPosition.z);
             }
             else
