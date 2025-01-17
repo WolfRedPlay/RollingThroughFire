@@ -10,6 +10,7 @@ public class Person : MonoBehaviour
 {
     [HideInInspector]
     public Vector3[] wayPoints;
+    [HideInInspector]
     public List<Transform> OriginalWayPoints;
 
     private int CurrentPoint = 0;

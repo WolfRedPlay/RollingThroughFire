@@ -21,8 +21,6 @@ public class CrowdSpawner : MonoBehaviour
     [SerializeField, Tooltip("How many personas will be spawned per group")]
     int GroupSize = 5;
 
-
-
     [Header("Operator Settings")]
 
     [SerializeField, Tooltip("Way points that personas will be following one by one, on last one they will disappear")]
@@ -39,8 +37,6 @@ public class CrowdSpawner : MonoBehaviour
 
     [SerializeField, Tooltip("Frequancy of spawning personas in seconds")]
     float AwakeTimeBetweenPersonas = 0.5f;
-
-
 
     private void Update()
     {
@@ -83,12 +79,28 @@ public class CrowdSpawner : MonoBehaviour
     {
         CrowdOperator operatorInstance = Instantiate(CrowdOperator_prefab, transform.position, Quaternion.identity);
 
-        operatorInstance.Personas = personas; 
+        operatorInstance.Personas = personas;
         operatorInstance.WayPoints = waypoints;
 
         operatorInstance.RadiusOfCrowd = RadiusOfCrowd;
         operatorInstance.DistanceBetweenPersonas = DistanceBetweenPersonas;
         operatorInstance.MaxAttemps = MaxAttemps;
         operatorInstance.AwakeTimeBetweenPersonas = AwakeTimeBetweenPersonas;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (WayPoints != null && WayPoints.Count > 0)
+        {
+            Gizmos.color = Color.green;
+
+            foreach (Transform waypoint in WayPoints)
+            {
+                if (waypoint != null)
+                {
+                    Gizmos.DrawWireSphere(waypoint.position, RadiusOfCrowd);
+                }
+            }
+        }
     }
 }
