@@ -1,16 +1,16 @@
 {
     "PlayerPosition": {
-        "x": 58.638099670410159,
-        "y": 1.36199951171875,
-        "z": 24.522411346435548
+        "x": 3.270098924636841,
+        "y": 2.847999334335327,
+        "z": -0.17038869857788087
     },
     "PlayerRotation": {
         "x": 0.0,
-        "y": -0.7071068286895752,
+        "y": 0.7071068286895752,
         "z": 0.0,
         "w": 0.7071068286895752
     },
-    "CurrentStage": 3,
+    "CurrentStage": 0,
     "ContactsInfo": [
         {
             "Contact": 3,
@@ -26,18 +26,6 @@
             "MessagesList": [
                 {
                     "Text": "Probably I don't have to tell you this, but remember that the reactor needs to be at 1800 degrees hot for the prototype to activate. Good luck today!",
-                    "IsRead": false
-                },
-                {
-                    "Text": "Just as a warning, there were some problems with the cooling system yesterday but the supervisor said we should continue with the prototype testing today.",
-                    "IsRead": false
-                },
-                {
-                    "Text": "We are getting some beers in the evening for celebration. Are you coming?",
-                    "IsRead": false
-                },
-                {
-                    "Text": "Was that an explosion?! Get out of there immediately!",
                     "IsRead": false
                 }
             ]
@@ -60,10 +48,6 @@
             "MessagesList": [
                 {
                     "Text": "Today the Engineering Faculty is testing a new Reactor in Campus grounds. Please, congratulate your fellow colleagues for their academic breakthrough. Good luck to the workers involved.",
-                    "IsRead": false
-                },
-                {
-                    "Text": "EMERGENCY MESSAGE: All personnel and students must evacuate the building immediately. There has been an explosion inside the building and fire is spreading.",
                     "IsRead": false
                 }
             ]

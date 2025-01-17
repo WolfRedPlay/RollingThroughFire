@@ -38,7 +38,7 @@ public class DataPersistenceManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        _fileDataHandler = new FileDataHandler(Application.dataPath, fileName);
+        _fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         if (_levelScenesNames.Find(x => x == SceneManager.GetActiveScene().name) != null)
