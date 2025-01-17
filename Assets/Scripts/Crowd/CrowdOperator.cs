@@ -85,7 +85,14 @@ public class CrowdOperator : MonoBehaviour
             Vector3[] points = new Vector3[WayPoints.Count];
             for (int t = 0; t < WayPoints.Count; t++)
             {
-                points[t] = OffsetPoints[i] + WayPoints[t].position;
+                if (t != WayPoints.Count - 1)
+                {
+                    points[t] = OffsetPoints[i] + WayPoints[t].position;
+                }
+                else
+                {
+                    points[t] = WayPoints[t].position;
+                }
             }
 
             comp.OriginalWayPoints = WayPoints;
