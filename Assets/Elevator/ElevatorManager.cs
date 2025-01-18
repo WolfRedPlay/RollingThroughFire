@@ -7,7 +7,7 @@ public class ElevatorManager : MonoBehaviour
     [SerializeField] private Button levelChangeButton;
 
     private enum DoorState { Open, Closed };
-    private static DoorState currentState = DoorState.Closed;
+    private DoorState currentState = DoorState.Closed;
 
     public void PlayAnimation()
     {
