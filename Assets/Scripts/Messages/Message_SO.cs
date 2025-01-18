@@ -7,8 +7,9 @@ public class Message_SO : ScriptableObject
     [SerializeField] [TextArea] string _text;
 
     [SerializeField] Contact _contactToSend;
-
+    [SerializeField] bool _isUrgent = false;
 
     public Contact Contact => _contactToSend;
     public string Text => _text;
+    public bool IsUrgent => _isUrgent;
 }

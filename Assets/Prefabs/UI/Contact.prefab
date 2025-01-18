@@ -175,7 +175,7 @@ MonoBehaviour:
   m_fontSizeMin: 2
   m_fontSizeMax: 5
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 8, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -377,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Bjorn Coworker
   _nameText: {fileID: 2608205705904290114}
+  _contact: 0
   _unreadMessagesAmountText: {fileID: 4835113062072446612}
   _newMessagesIcon: {fileID: 435408298769839042}
   _noMessagesIcon: {fileID: 6773848653032347959}
@@ -617,7 +618,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6773848653032347959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.0272}
+  m_LocalPosition: {x: 0, y: 0, z: -4.0228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -625,7 +626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.73511946, y: 0.13931468}
   m_AnchorMax: {x: 0.8886269, y: 0.86068535}
-  m_AnchoredPosition: {x: -2.0380993, y: 0.000041484833}
+  m_AnchoredPosition: {x: -0.12001991, y: 0.11508989}
   m_SizeDelta: {x: 0.07180023, y: 0.22999954}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2300723557416101849
