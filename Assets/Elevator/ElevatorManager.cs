@@ -7,9 +7,9 @@ public class ElevatorManager : MonoBehaviour
     [SerializeField] private Button levelChangeButton;
 
     private enum DoorState { Open, Closed };
-    private DoorState currentState = DoorState.Closed;
+    private static DoorState currentState = DoorState.Closed;
 
-    void PlayAnimation()
+    public void PlayAnimation()
     {
         switch (currentState)
         {
@@ -27,7 +27,7 @@ public class ElevatorManager : MonoBehaviour
         }
     }
 
-    void ButtonPressed()
+    public static void ButtonPressed()
     {
         GameManager.LoadNextScene();
     }
