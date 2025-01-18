@@ -9,30 +9,21 @@ public class ElevatorManager : MonoBehaviour
     private enum DoorState { Open, Closed };
     private DoorState currentState = DoorState.Closed;
 
-
-    void Update()
-    {
-        PlayAnimation();
-    }
-
     void PlayAnimation()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        switch (currentState)
         {
-            switch (currentState)
-            {
-                case DoorState.Open:
-                    animator.Play("DoorsClose");
-                    currentState = DoorState.Closed;
-                    break;
-                case DoorState.Closed:
-                    animator.Play("DoorsAnim");
-                    currentState = DoorState.Open;
-                    break;
-                default:
-                    Debug.LogError("Unhandled door state: " + currentState);
-                    break;
-            }
+            case DoorState.Open:
+                animator.Play("DoorsClose");
+                currentState = DoorState.Closed;
+                break;
+            case DoorState.Closed:
+                animator.Play("DoorsAnim");
+                currentState = DoorState.Open;
+                break;
+            default:
+                Debug.LogError("Unhandled door state: " + currentState);
+                break;
         }
     }
 
