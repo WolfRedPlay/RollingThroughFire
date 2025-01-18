@@ -3,7 +3,47 @@ guid: d07a49cb0d993d34e81bc7ba8a66cdd9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ceiling
+    second: {fileID: 2100000, guid: 872e1653bf5cb184a8975be2c6c5a840, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fance
+    second: {fileID: 2100000, guid: 096b809a3eb783d4588730d2a6e7b3ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: e189f5b4ec69fb946bc318caa5a48f65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stairs
+    second: {fileID: 2100000, guid: ac52ed42ed149b74796b3ed1ef5e7451, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallDecor
+    second: {fileID: 2100000, guid: 4fe711406e45f774dbf5ae97716def34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Walls
+    second: {fileID: 2100000, guid: b639d7de9e49b00429146db76202e5f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Walls2
+    second: {fileID: 2100000, guid: bc0852e22d133004cbafd6e30aab1d7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Walls3
+    second: {fileID: 2100000, guid: ad5cd23febf26124da4c6a88d34de10b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
