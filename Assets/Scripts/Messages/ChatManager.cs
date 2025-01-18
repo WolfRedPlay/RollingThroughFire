@@ -29,6 +29,9 @@ public class ChatManager : MonoBehaviour
     Rect viewPortRect;
     bool _isActive = false;
 
+    Color BlueColor = new Color(0f, 0.74f, 1f, 1f);
+    Color RedColor = new Color(0.81f, 0.07f, 0.01f, 1f);
+
     public void Activate() 
     { 
         StartCoroutine(ActivationDelay()); 
@@ -53,7 +56,12 @@ public class ChatManager : MonoBehaviour
     public void AddMessage(Message newMessage)
     {
         GameObject newMessageBox = Instantiate(_messagePrefab, _messagesPanel);
-        newMessageBox.GetComponent<MessageBox>().Initialize(newMessage, _scrollRect.viewport);
+        MessageBox box = newMessageBox.GetComponent<MessageBox>();
+        
+        box.Initialize(newMessage, _scrollRect.viewport);
+
+        if (newMessage.IsUrgent) box.SetBackgroundColor(RedColor);
+        else box.SetBackgroundColor(BlueColor);
 
         _messages.Add(newMessageBox);
 

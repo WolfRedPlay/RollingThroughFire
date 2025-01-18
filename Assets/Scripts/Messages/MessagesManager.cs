@@ -11,6 +11,9 @@ public class MessagesManager : MonoBehaviour
     [SerializeField] HapticImpulsePlayer _hapticImpulse;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] float minTimeBetweenSounds = 0.1f;
+
+    [SerializeField] AudioClip _notification;
+    [SerializeField] AudioClip _alarm;
     
     
     List<ContactManager> _contacts;
@@ -31,9 +34,11 @@ public class MessagesManager : MonoBehaviour
         ContactManager contactToAddMessage = _contacts.Find(x => x.Contact == newMessage.Contact);
         if (contactToAddMessage == null) return;
         contactToAddMessage.AddMessage(newMessage);
+
+        if (newMessage.IsUrgent) _notifications.Enqueue(_alarm);
+        else _notifications.Enqueue(_notification);
         
-        
-        _notifications.Enqueue(_audioSource.clip);
+
         PlayNextNotification();
     }
 
@@ -50,11 +55,12 @@ public class MessagesManager : MonoBehaviour
             return;
         }
 
-        _notifications.Dequeue();
+        AudioClip clip = _notifications.Dequeue();
+        _audioSource.clip = clip;
         _audioSource.Play();
         lastPlayTime = Time.time;
         _isNotifying = true;
-        _hapticImpulse.SendHapticImpulse(.8f, _audioSource.clip.length);
+        _hapticImpulse.SendHapticImpulse(1f, _audioSource.clip.length);
 
     }
 

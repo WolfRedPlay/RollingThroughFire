@@ -15,3 +15,4 @@ MonoBehaviour:
   _text: 'EMERGENCY MESSAGE: Exit the building through the main door. Avoid crowded
     areas. Please, remain calm.'
   _contactToSend: 1
+  _isUrgent: 1
