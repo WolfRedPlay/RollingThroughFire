@@ -6,7 +6,8 @@ using System.Security.Cryptography;
 
 public class FireManager : MonoBehaviour
 {
-    public GameObject fireStarterPrefab;
+    [SerializeField]private List<GameObject> fireStarterPrefab = new List<GameObject>(3);
+    [SerializeField]private int randomSize = 0;
     public float fireStarterSize = 5f;
     public Vector3 fireStarterSpacing = new Vector3(5f, 5f, 5f);
     public float spawnDelay = 0.5f;
@@ -59,10 +60,11 @@ public class FireManager : MonoBehaviour
             yield break;
         }
 
+        randomSize = Random.Range(0, fireStarterPrefab.Count);
         Vector3 initialPosition = availablePositions.First();
         availablePositions.Remove(initialPosition);
         visitedPositions.Add(initialPosition);
-        Instantiate(fireStarterPrefab, initialPosition, Quaternion.identity);
+        Instantiate(fireStarterPrefab[randomSize], initialPosition, Quaternion.identity);
 
         yield return StartCoroutine(RandomSpread(initialPosition));
     }
@@ -80,8 +82,8 @@ public class FireManager : MonoBehaviour
             Vector3 nextPosition = neighbors[Random.Range(0, neighbors.Count)];
             availablePositions.Remove(nextPosition);
             visitedPositions.Add(nextPosition);
-
-            Instantiate(fireStarterPrefab, nextPosition, Quaternion.identity);
+            randomSize = Random.Range(0, fireStarterPrefab.Count);
+            Instantiate(fireStarterPrefab[randomSize], nextPosition, Quaternion.identity);
 
             yield return new WaitForSeconds(spawnDelay);
 
