@@ -15,3 +15,4 @@ MonoBehaviour:
   _text: 'EMERGENCY MESSAGE: Electrical malfunction detected on the top floor. Avoid
     wet surfaces, as they might be electrified.'
   _contactToSend: 1
+  _isUrgent: 1

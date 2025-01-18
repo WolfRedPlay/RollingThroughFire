@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MessageBox : MonoBehaviour
 {
     [Tooltip("Text object for message content")]
     [SerializeField] TMP_Text _textField;
+    [Tooltip("Image of message box")]
+    [SerializeField] Image _image;
 
     RectTransform _viewportTransform;
     RectTransform _transform;
@@ -18,6 +21,11 @@ public class MessageBox : MonoBehaviour
     private void Start()
     {
         _transform = GetComponent<RectTransform>();
+    }
+
+    public void SetBackgroundColor(Color color)
+    {
+        _image.color = color;
     }
 
     public void Initialize(Message messageData, RectTransform viewport)

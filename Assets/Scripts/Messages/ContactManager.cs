@@ -31,6 +31,8 @@ public class ContactManager : MonoBehaviour, IDataPersistence
     const string ReadText = "Read";
     const string NewMessagesText = " New Messages";
     const string UrgentMessagesText = "URGENT:";
+    Color GreenMessage = new(0.47f, 0.79f, 0.5f, 1f);
+    Color RedMessage = new(0.82f, 0.29f, 0.25f, 1f);
 
 
     private void Start()
@@ -65,7 +67,12 @@ public class ContactManager : MonoBehaviour, IDataPersistence
             if (isUrgent)
             {
                 _unreadMessagesAmountText.text = UrgentMessagesText + unreadMessagesAmount.ToString() + NewMessagesText;
-                _newMessagesIcon.GetComponent<Image>().color = Color.yellow;
+                _newMessagesIcon.GetComponent<Image>().color = RedMessage;
+            }
+            else
+            {
+                _unreadMessagesAmountText.text = unreadMessagesAmount.ToString() + NewMessagesText;
+                _newMessagesIcon.GetComponent<Image>().color = GreenMessage;
             }
 
 

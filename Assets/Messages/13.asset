@@ -15,3 +15,4 @@ MonoBehaviour:
   _text: 'EMERGENCY MESSAGE: All personnel and students must evacuate the building
     immediately. There has been an explosion inside the building and fire is spreading.'
   _contactToSend: 1
+  _isUrgent: 1
