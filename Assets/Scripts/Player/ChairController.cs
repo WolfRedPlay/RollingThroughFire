@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEditor.XR.LegacyInputHelpers;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class ChairController : MonoBehaviour
     [SerializeField] float _moveSpeed;
     [SerializeField] float _rotationSpeed;
     [SerializeField] float _breakingForce;
+    [SerializeField] float _maxSpeed = 6f;
 
     [Space]
     [Header("Recentering")]
@@ -25,6 +27,7 @@ public class ChairController : MonoBehaviour
     Rigidbody _rb;
     float _leftMultiplier = 1f;
     float _rightMultiplier = 1f;
+
 
     private void Start()
     {
@@ -92,19 +95,28 @@ public class ChairController : MonoBehaviour
         {
             ApplyBreak(false);
         }
+        LimitSpeed();
+    }
 
+    private void LimitSpeed()
+    {
+        Vector3 currentVelocity = _rb.linearVelocity;
+
+        if (currentVelocity.magnitude > _maxSpeed)
+        {
+            Vector3 limitedVelocity = currentVelocity.normalized * _maxSpeed;
+
+            _rb.linearVelocity = limitedVelocity;
+        }
     }
 
     private void ApplyBreak(bool isLeft)
     {
         if (_rb.linearVelocity.magnitude < 0.01f) return;
 
+        Vector3 brakingDirection = -_rb.linearVelocity.normalized;
 
-
-        Vector3 forwardVelocity = Vector3.Project(_rb.linearVelocity, transform.forward);
-        Vector3 brakingForce = forwardVelocity * (_breakingForce * Time.fixedDeltaTime);
-
-        _rb.linearVelocity -= brakingForce;
+        _rb.AddForce(brakingDirection * _breakingForce * Time.fixedDeltaTime, ForceMode.Force);
 
 
         if (_rb.linearVelocity.magnitude < 0.1f) _rb.linearVelocity = Vector3.zero;

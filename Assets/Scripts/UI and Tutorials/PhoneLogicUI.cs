@@ -1,18 +1,17 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PhoneLogicUI : MonoBehaviour
 {
     public GameObject homeScreen;
     public GameObject messagesScreen;
     public GameObject settingsScreen;
-    public GameObject saveloadScreen;
     public GameObject emergencyScreen;
     private void CloseAllScreens()
     {
         //homeScreen.SetActive(false);
         settingsScreen.SetActive(false);
         messagesScreen.SetActive(false);
-        saveloadScreen.SetActive(false);
     }
 
     // Method to go to the Home screen
@@ -44,10 +43,9 @@ public class PhoneLogicUI : MonoBehaviour
     }
 
     // Method to open the Save/Load screen
-    public void OpenSaveLoad()
+    public void LoadCheckpoint()
     {
-        homeScreen.SetActive(false);
-        saveloadScreen.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
 

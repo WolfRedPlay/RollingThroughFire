@@ -524,7 +524,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.09357253, y: 0.3670927, z: 0.5978446}
+  m_Size: {x: 0.06456055, y: 0.3670927, z: 0.7500769}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8744039037321046742
 GameObject:
@@ -667,8 +667,8 @@ HingeJoint:
     targetPosition: 0
   m_UseMotor: 1
   m_Motor:
-    targetVelocity: 40
-    force: 2
+    targetVelocity: 60
+    force: 5
     freeSpin: 0
   m_UseLimits: 1
   m_ExtendedLimits: 0
@@ -827,5 +827,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.08000002, y: 2, z: 0.79999995}
+  m_Size: {x: 0.05519619, y: 2, z: 1.0037081}
   m_Center: {x: 0, y: 0, z: 0}

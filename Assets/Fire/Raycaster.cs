@@ -10,7 +10,7 @@ public class Raycaster : MonoBehaviour
     private bool mhasHit2 = false;
     private bool mhasHit3 = false;
 
-    void Update()
+    public void StartFire()
     {
         RaycastHit objectHit;
         Vector3 left = raycastObj.transform.TransformDirection(Vector3.up);

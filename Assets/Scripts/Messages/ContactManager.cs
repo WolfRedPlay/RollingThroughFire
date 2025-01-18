@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ContactManager : MonoBehaviour, IDataPersistence
 {
@@ -29,6 +30,7 @@ public class ContactManager : MonoBehaviour, IDataPersistence
 
     const string ReadText = "Read";
     const string NewMessagesText = " New Messages";
+    const string UrgentMessagesText = "URGENT:";
 
 
     private void Start()
@@ -47,18 +49,26 @@ public class ContactManager : MonoBehaviour, IDataPersistence
     private void UpdateMessagesAmount()
     {
         int unreadMessagesAmount = 0;
+        bool isUrgent = false;
 
         foreach (Message message in _messages)
         {
             if (!message.IsRead) unreadMessagesAmount++;
+            if (message.IsUrgent) isUrgent = true;
         }
 
 
         if (unreadMessagesAmount > 0)
         {
-            _unreadMessagesAmountText.text = unreadMessagesAmount.ToString() + NewMessagesText;
             _newMessagesIcon.SetActive(true);
             _noMessagesIcon.SetActive(false);
+            if (isUrgent)
+            {
+                _unreadMessagesAmountText.text = UrgentMessagesText + unreadMessagesAmount.ToString() + NewMessagesText;
+                _newMessagesIcon.GetComponent<Image>().color = Color.yellow;
+            }
+
+
         }
         else
         {
@@ -72,7 +82,7 @@ public class ContactManager : MonoBehaviour, IDataPersistence
     public void AddMessage(Message_SO newMessageSO)
     {
         UpdateMessagesAmount();
-        Message newMessage = new Message(newMessageSO.Text);
+        Message newMessage = new Message(newMessageSO.Text, newMessageSO.IsUrgent);
         _messages.Add(newMessage);
     }
 
@@ -89,24 +99,25 @@ public class ContactManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        _messages = data.MessagesList[_contact];
+        _messages = data.GetMessagesForContact(_contact);
     }
 
     public void SaveData(ref GameData data)
     {
-        data.MessagesList[_contact] = _messages;
+        data.AssignMessagesToContact(_contact, _messages);
     }
 }
 
 [Serializable]
 public class Message
 {
-    public Message(string text)
+    public Message(string text, bool isUrgent)
     {
         Text = text;
         IsRead = false;
+        IsUrgent = isUrgent;
     }
-
+    public bool IsUrgent;
     public string Text;
     public bool IsRead;
 }

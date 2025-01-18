@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 
 public class ReactorOverheatHandler : MonoBehaviour
@@ -41,6 +42,8 @@ public class ReactorOverheatHandler : MonoBehaviour
     [SerializeField] private GameObject warningSystemMessage;
 
 
+
+    public UnityEvent OnReactorExploded;
 
 
 
@@ -134,6 +137,10 @@ public class ReactorOverheatHandler : MonoBehaviour
 
         // Toggle specific objects
         explosionFire.SetActive(false);
+
+        OnReactorExploded?.Invoke();
+        OnReactorExploded = null;
+
 
         Debug.Log("Toggled objects after delay.");
     }

@@ -10,11 +10,12 @@ public class Person : MonoBehaviour
 {
     [HideInInspector]
     public Vector3[] wayPoints;
+    [HideInInspector]
     public List<Transform> OriginalWayPoints;
 
     private int CurrentPoint = 0;
     private NavMeshAgent agent;
-    private float StopDistance = 1.0f;
+    private float StopDistance = 1.5f;
     private float maxTimeToReachPoint = 10; // Max time to reach a point
     private float pointTimer = 0.0f;
 
@@ -24,8 +25,16 @@ public class Person : MonoBehaviour
         agent.autoBraking = false;
         if (wayPoints.Length > 0)
         {
-            agent.SetDestination(wayPoints[CurrentPoint]);
-            RotateTowards(wayPoints[CurrentPoint]);
+            if (NavMesh.SamplePosition(wayPoints[CurrentPoint], out NavMeshHit navHit, 3f, agent.areaMask))
+            {
+                agent.SetDestination(navHit.position);
+                RotateTowards(navHit.position);
+            }
+            else
+            {
+                agent.SetDestination(OriginalWayPoints[CurrentPoint].position);
+                RotateTowards(OriginalWayPoints[CurrentPoint].position);
+            }
         }
     }
 
@@ -36,7 +45,7 @@ public class Person : MonoBehaviour
             return;
         }
 
-        if (Vector3.Distance(transform.position, wayPoints[CurrentPoint]) <= StopDistance)
+        if (Vector3.Distance(transform.position, agent.destination) <= StopDistance)
         {
             MoveToNextPoint();
         }
@@ -61,7 +70,7 @@ public class Person : MonoBehaviour
         CurrentPoint++;
         if (CurrentPoint < wayPoints.Length)
         {
-            if (NavMesh.SamplePosition(wayPoints[CurrentPoint], out NavMeshHit navHit, 5f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(wayPoints[CurrentPoint], out NavMeshHit navHit, 3f, agent.areaMask))
             {
                 agent.SetDestination(navHit.position);
             }

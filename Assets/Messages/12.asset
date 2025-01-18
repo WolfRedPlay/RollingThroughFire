@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7cd3216f0c14e84c9a3936326d47d05, type: 3}
-  m_Name: MessageMom1
+  m_Name: 12
   m_EditorClassIdentifier: 
-  _text: "Helo, my dear! How is work? Good luck today!!! \n\nI love you!!\u2665"
-  _contactToSend: 3
+  _text: Today the Engineering Faculty is testing a new Reactor in Campus grounds.
+    Please, congratulate your fellow colleagues for their academic breakthrough.
+    Good luck to the workers involved.
+  _contactToSend: 1
