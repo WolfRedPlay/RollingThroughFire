@@ -2,23 +2,71 @@ using System;
 using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class TutorialTextDespawner : MonoBehaviour
 {
     public GameObject tutorialTextPhone;
     public GameObject tutorialTextWheelLeft;
     public GameObject tutorialTextWheelRight;
+    public GameObject tutorialTextBreakRight;
+    public GameObject tutorialTextBreakLeft;
 
     public InputActionReference despawnTextPhone;
-    public InputActionReference despawnTutorialWheelLeft;
-    public InputActionReference despawnTutorialWheelRight;
+    [SerializeField] XRSimpleInteractable leftWheel;
+    [SerializeField] XRSimpleInteractable rightWheel;
 
     void Start()
     {
         // Register callbacks for the input actions
         despawnTextPhone.action.performed += HideTutorialTextPhone;
-        despawnTutorialWheelLeft.action.performed += HideTutorialTextWheelLeft;
-        despawnTutorialWheelRight.action.performed += HideTutorialTextWheelRight;
+
+        leftWheel.firstSelectEntered.AddListener(HideGrabTutorialLeft);
+        rightWheel.firstSelectEntered.AddListener(HideGrabTutorialRight);
+
+        leftWheel.activated.AddListener(HideBreakTutorialLeft);
+        rightWheel.activated.AddListener(HideBreakTutorialRight);
+
+    }
+
+    private void HideBreakTutorialRight(ActivateEventArgs arg0)
+    {
+        if (tutorialTextBreakRight != null)
+        {
+            tutorialTextBreakRight.SetActive(false);
+            rightWheel.activated.RemoveListener(HideBreakTutorialLeft);
+        }
+    }
+
+    private void HideBreakTutorialLeft(ActivateEventArgs arg0)
+    {
+        if (tutorialTextBreakLeft != null)
+        {
+            tutorialTextBreakLeft.SetActive(false);
+            leftWheel.activated.RemoveListener(HideBreakTutorialLeft);
+        }
+    }
+
+    private void HideGrabTutorialRight(SelectEnterEventArgs arg0)
+    {
+        if (tutorialTextWheelRight != null && tutorialTextBreakRight != null)
+        {
+            tutorialTextWheelRight.SetActive(false);
+            tutorialTextBreakRight.SetActive(true);
+            rightWheel.firstSelectEntered.RemoveListener(HideGrabTutorialRight);
+        }
+    }
+
+    private void HideGrabTutorialLeft(SelectEnterEventArgs arg0)
+    {
+        if (tutorialTextWheelLeft != null && tutorialTextBreakLeft != null)
+        {
+            tutorialTextWheelLeft.SetActive(false);
+            tutorialTextBreakLeft.SetActive(true);
+            leftWheel.firstSelectEntered.RemoveListener(HideGrabTutorialLeft);
+
+        }
     }
 
     private void HideTutorialTextPhone(InputAction.CallbackContext context)
@@ -26,30 +74,8 @@ public class TutorialTextDespawner : MonoBehaviour
         if (tutorialTextPhone != null)
         {
             tutorialTextPhone.SetActive(false);
+            despawnTextPhone.action.performed -= HideTutorialTextPhone;
         }
     }
 
-    private void HideTutorialTextWheelLeft(InputAction.CallbackContext context)
-    {
-        if (tutorialTextWheelLeft != null)
-        {
-            tutorialTextWheelLeft.SetActive(false);
-        }
-    }
-
-    private void HideTutorialTextWheelRight(InputAction.CallbackContext context)
-    {
-        if (tutorialTextWheelRight != null)
-        {
-            tutorialTextWheelRight.SetActive(false);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        // Unregister callbacks when the object is destroyed
-        despawnTextPhone.action.performed -= HideTutorialTextPhone;
-        despawnTutorialWheelLeft.action.performed -= HideTutorialTextWheelLeft;
-        despawnTutorialWheelRight.action.performed -= HideTutorialTextWheelRight;
-    }
 }
