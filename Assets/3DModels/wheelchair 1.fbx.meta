@@ -3,7 +3,42 @@ guid: 90ca333cc984f5e4aa3533a7c40eb62a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chair
+    second: {fileID: 2100000, guid: b27e906bab187ca429cbd252d913370f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontWheelL
+    second: {fileID: 2100000, guid: 1c296d768301d974f933620f7ce8b613, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontWheelR
+    second: {fileID: 2100000, guid: 688dc929c45edd3459e808c82e4619e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelHandleL
+    second: {fileID: 2100000, guid: 0b7e6bd5adca6e841a806039405f596c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelL
+    second: {fileID: 2100000, guid: bc63f477cffdc4e4eb380964c85e186b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelR
+    second: {fileID: 2100000, guid: a570a03967ebcc54b95921e2cb41aeda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelhandleR
+    second: {fileID: 2100000, guid: 2ffaa7ded20edc04f8eedbc74f412807, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
