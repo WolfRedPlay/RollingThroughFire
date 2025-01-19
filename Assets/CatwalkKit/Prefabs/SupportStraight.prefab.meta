@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: af1373cd5a96c314faae0dfcf01eaf53
+timeCreated: 1557678533
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146383
+  packageName: Industrial Catwalk Kit
+  packageVersion: 1.0
+  assetPath: Assets/CatwalkKit/Prefabs/SupportStraight.prefab
+  uploadId: 311022

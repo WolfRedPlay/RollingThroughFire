@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5c39b3d6fac7726488aa148e817c7d87
+timeCreated: 1557328368
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146383
+  packageName: Industrial Catwalk Kit
+  packageVersion: 1.0
+  assetPath: Assets/CatwalkKit/Materials/CatWalk_LOD1.mat
+  uploadId: 311022

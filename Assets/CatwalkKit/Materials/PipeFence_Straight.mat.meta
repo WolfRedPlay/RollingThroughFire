@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b9eae1d5a44d0e141bc615695cb84b91
+timeCreated: 1557331939
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146383
+  packageName: Industrial Catwalk Kit
+  packageVersion: 1.0
+  assetPath: Assets/CatwalkKit/Materials/PipeFence_Straight.mat
+  uploadId: 311022
