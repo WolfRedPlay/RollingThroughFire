@@ -19,8 +19,21 @@ public class Person : MonoBehaviour
     private float maxTimeToReachPoint = 10; // Max time to reach a point
     private float pointTimer = 0.0f;
 
+    private Animator animator;
+
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
+
+        if (animator != null)
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            Debug.Log("Failed to find animator.");
+        }
+
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
         if (wayPoints.Length > 0)
