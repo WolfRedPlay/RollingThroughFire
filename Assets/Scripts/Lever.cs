@@ -13,11 +13,21 @@ public class Lever : MonoBehaviour
     private bool canPassHalf = true;
     public UnityEvent OnLeverPassesTheHalf;
 
+    [SerializeField] bool OppositeDir = false;
+
     private void Start()
     {
         joint = GetComponent<HingeJoint>();
         max = joint.limits.max;
         min = joint.limits.min;
+
+        if (OppositeDir)
+        {
+            Side = !Side;
+            JointMotor jointMotor = joint.motor;
+            jointMotor.targetVelocity = -jointMotor.targetVelocity;
+            joint.motor = jointMotor;
+        }
     }
 
     private void FixedUpdate()
@@ -37,8 +47,11 @@ public class Lever : MonoBehaviour
         float halfwayPoint = (max + min) / 2;
         float currentAngle = joint.angle;
 
+        //Debug.Log(halfwayPoint + " :: " + currentAngle);
+
         if (currentAngle > halfwayPoint && !Side || currentAngle < halfwayPoint && Side)
         {
+            Debug.Log("Passed the half");
             Side = !Side;
             StartCoroutine(RechargePassHalf(0.5f));
             return true;

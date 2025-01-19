@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 6dfd0e49f56fd3446aabe6e23210acbf
+guid: c8a5378b07ca5574b8fe9de6eba0efe9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FuseBox
+    second: {fileID: 2100000, guid: b6a28e56466d21c4383f7ec4b47a866f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lever
+    second: {fileID: 2100000, guid: d47f8cf66707add47bf9aea57d4ba3c1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
