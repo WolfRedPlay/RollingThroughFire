@@ -373,7 +373,9 @@ public class ZombieController : MonoBehaviour
             }
         }
 
-        return Vector3.zero;
+
+
+        return Patrol_Area.transform.position;
     }
 
     private void MoveTo(Vector3 destination)
@@ -427,11 +429,11 @@ public class ZombieController : MonoBehaviour
     {
         if (!ShowGizmos) return;
 
-        //Gizmos.color = DetectionGizmoColor;
-        //Gizmos.DrawWireSphere(transform.position, Detection_Radius);
+        Gizmos.color = DetectionGizmoColor;
+        Gizmos.DrawWireSphere(transform.position, Detection_Radius);
 
-        //Gizmos.color = BroadcastGizmoColor;
-        //Gizmos.DrawWireSphere(transform.position, Broadcast_radius);
+        Gizmos.color = BroadcastGizmoColor;
+        Gizmos.DrawWireSphere(transform.position, Broadcast_radius);
 
         Gizmos.color = PatrolSpawnGizmoColor;
         Gizmos.DrawWireSphere(transform.position, Point_spawn_radius/Inner_radius_coefficient);
