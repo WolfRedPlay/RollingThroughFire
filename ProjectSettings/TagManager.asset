@@ -13,6 +13,7 @@ TagManager:
   - InsideElevator
   - FixAgain
   - FireFix
+  - Fire
   layers:
   - Default
   - TransparentFX

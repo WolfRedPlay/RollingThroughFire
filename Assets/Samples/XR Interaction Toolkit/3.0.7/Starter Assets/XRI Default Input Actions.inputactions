@@ -1980,6 +1980,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SpawnPhone",
+                    "type": "Button",
+                    "id": "62dc56ae-244e-4a5c-9fec-9eba30bf7418",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select Value",
                     "type": "Value",
                     "id": "39bbf1ac-21a3-413d-90f6-6dbf6efeaabe",
@@ -2141,6 +2150,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d7b1b070-6047-4d7e-b027-7ee94c74e3b6",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpawnPhone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
