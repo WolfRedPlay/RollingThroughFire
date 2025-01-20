@@ -109,9 +109,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _ElectricDensity: 5.17
+    - _ElectricDensity: 96.8
     - _ElectricIntensity: 5
-    - _ElectricRadius: 18.72
+    - _ElectricRadius: 78.4
     - _ElectricSpeed: 2
     - _EnvironmentReflections: 1
     - _FresnelPower: 8.2
@@ -131,14 +131,14 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _Time: 0
-    - _Transparency: 0.802
-    - _Velocity: 0.1
+    - _Transparency: 0.389
+    - _Velocity: 0.5
     - _WaveSpeed: 0.01
     - _WaveStrength: 5
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.7117337, g: 0.942179, b: 0.98490566, a: 1}
+    - _BaseColor: {r: 0.96981126, g: 0.8347339, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DeepColor: {r: 0.6396227, g: 0.9774764, b: 1, a: 0}
     - _ElectricColor: {r: 0.09999997, g: 0.8, b: 1, a: 1}
