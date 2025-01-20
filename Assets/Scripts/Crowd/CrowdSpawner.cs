@@ -9,7 +9,8 @@ public class CrowdSpawner : MonoBehaviour
     [Header("Spawner Settings")]
 
     [SerializeField, Tooltip("Moving Object Prefab that has to have Person.cs on it")]
-    GameObject Person_prefab;
+    List<GameObject> Person_prefab;
+    int current_prefab = 0;
 
     [SerializeField, Tooltip("Empty object with CrowdOperator.cs on it")]
     CrowdOperator CrowdOperator_prefab;
@@ -52,12 +53,13 @@ public class CrowdSpawner : MonoBehaviour
                 Spawn_timer = 0;
 
                 List<GameObject> crowd = SpawnCrowd(GroupSize, Person_prefab);
+
                 SpawnOperator(crowd, WayPoints);
             }
         }
     }
 
-    private List<GameObject> SpawnCrowd(int groupSize, GameObject prefab)
+    private List<GameObject> SpawnCrowd(int groupSize, List<GameObject> prefab)
     {
         List<GameObject> spawnedObjects = new List<GameObject>();
 
@@ -65,7 +67,10 @@ public class CrowdSpawner : MonoBehaviour
         {
             for (int i = 0; i < groupSize; i++)
             {
-                GameObject spawnedPerson = Instantiate(prefab, navHit.position + Vector3.up * 2, Quaternion.identity);
+                current_prefab++;
+                if (current_prefab >= Person_prefab.Count) current_prefab = 0;
+
+                GameObject spawnedPerson = Instantiate(prefab[current_prefab], navHit.position + Vector3.up * 2, Quaternion.identity);
                 spawnedPerson.SetActive(false);
                 spawnedObjects.Add(spawnedPerson);
             }

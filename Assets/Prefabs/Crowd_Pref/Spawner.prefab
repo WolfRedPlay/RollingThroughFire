@@ -44,9 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a891d043112b0d47aeab5e078a52e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnableSpawner: 1
-  Person_prefab: {fileID: 515833448963074342, guid: 42baeb26251f6684c8d908b753d71270, type: 3}
+  Person_prefab:
+  - {fileID: 515833448963074342, guid: 42baeb26251f6684c8d908b753d71270, type: 3}
+  - {fileID: 515833448963074342, guid: 6f5ec92cd735f014ba49dfb2ae357158, type: 3}
+  - {fileID: 515833448963074342, guid: 3ec8c3bf4285ce548a80f32bb0bd5094, type: 3}
   CrowdOperator_prefab: {fileID: 8000684881090478063, guid: 358b4e90dd022b848adbedbd6ba010ac, type: 3}
   SpawnFrequancy: 7
   GroupSize: 5
   WayPoints: []
+  RadiusOfCrowd: 3
+  DistanceBetweenPersonas: 1
+  MaxAttemps: 50
+  AwakeTimeBetweenPersonas: 0.5
+  gizmos: 1
