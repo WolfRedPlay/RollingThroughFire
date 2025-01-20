@@ -57,11 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8a5378b07ca5574b8fe9de6eba0efe9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8009124
+      value: 2.99
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8a5378b07ca5574b8fe9de6eba0efe9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.330087
+      value: 13.19
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8a5378b07ca5574b8fe9de6eba0efe9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -129,6 +129,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5360538690872367603, guid: c8a5378b07ca5574b8fe9de6eba0efe9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 787335669203858249}
+    - targetCorrespondingSourceObject: {fileID: 5360538690872367603, guid: c8a5378b07ca5574b8fe9de6eba0efe9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1506299224113443656}
     - targetCorrespondingSourceObject: {fileID: 8827439883756640179, guid: c8a5378b07ca5574b8fe9de6eba0efe9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 763941678319860187}
@@ -171,6 +174,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5000001, y: 0.6392237, z: 0.042246435}
   m_Center: {x: 0.00002224352, y: 0, z: 0.0211232}
+--- !u!54 &1506299224113443656
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208175026596299697}
+  serializedVersion: 4
+  m_Mass: 20
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
 --- !u!1 &3332711247923121649 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8827439883756640179, guid: c8a5378b07ca5574b8fe9de6eba0efe9, type: 3}
@@ -333,7 +363,7 @@ HingeJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3332711247923121649}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 0}
+  m_ConnectedBody: {fileID: 1506299224113443656}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
