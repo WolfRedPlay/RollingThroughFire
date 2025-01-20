@@ -11,8 +11,7 @@ public class ElectroManager : MonoBehaviour
     }
 
     public void ElectroOff()
-    {
-        if (electro != null) 
-            electro.SetActive(false);
+    { 
+        electro.SetActive(false);
     }
 }
