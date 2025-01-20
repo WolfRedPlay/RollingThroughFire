@@ -57,7 +57,7 @@ public class Raycaster : MonoBehaviour
     private IEnumerator FixFire()
     {
         yield return new WaitForSeconds(5);
-        fireFix.SetActive(true);
+        //fireFix.SetActive(true);
     }
 
 }
