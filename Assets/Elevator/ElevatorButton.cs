@@ -18,6 +18,6 @@ public class ElevatorButton : MonoBehaviour
     {
         mSceneTransition.FadeIn();
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("TopFloor");
+        SceneManager.LoadScene("BottomFloor");
     }
 }
