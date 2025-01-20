@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChangeSceneOnColliderEnter : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class ChangeSceneOnColliderEnter : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
+            mSceneTransition.FadeIn();
+            SceneManager.LoadScene("EndingScene");
         }
     }
 }

@@ -10,6 +10,9 @@ TagManager:
   - Electro
   - Throwable
   - BlackImage
+  - InsideElevator
+  - FixAgain
+  - FireFix
   layers:
   - Default
   - TransparentFX

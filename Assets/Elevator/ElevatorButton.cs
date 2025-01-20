@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class ElevatorButton : MonoBehaviour
 {
-    private ElevatorManager mElevatorManager;
     private SceneTransition mSceneTransition;
     private void OnCollisionEnter(Collision collision)
     {
@@ -18,7 +17,6 @@ public class ElevatorButton : MonoBehaviour
     private IEnumerator LoadScene()
     {
         mSceneTransition.FadeIn();
-        mElevatorManager.PlayAnimation();
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("TopFloor");
     }
