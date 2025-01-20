@@ -38,6 +38,9 @@ public class CrowdSpawner : MonoBehaviour
     [SerializeField, Tooltip("Frequancy of spawning personas in seconds")]
     float AwakeTimeBetweenPersonas = 0.5f;
 
+    [SerializeField]
+    bool gizmos = true;
+
     private void Update()
     {
         if (Person_prefab != null && CrowdOperator_prefab != null)
@@ -90,15 +93,18 @@ public class CrowdSpawner : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (WayPoints != null && WayPoints.Count > 0)
+        if (gizmos)
         {
-            Gizmos.color = Color.green;
-
-            foreach (Transform waypoint in WayPoints)
+            if (WayPoints != null && WayPoints.Count > 0)
             {
-                if (waypoint != null)
+                Gizmos.color = Color.green;
+
+                foreach (Transform waypoint in WayPoints)
                 {
-                    Gizmos.DrawWireSphere(waypoint.position, RadiusOfCrowd);
+                    if (waypoint != null)
+                    {
+                        Gizmos.DrawWireSphere(waypoint.position, RadiusOfCrowd);
+                    }
                 }
             }
         }
