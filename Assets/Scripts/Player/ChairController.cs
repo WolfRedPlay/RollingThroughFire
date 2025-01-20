@@ -3,6 +3,7 @@ using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEditor.XR.LegacyInputHelpers;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody))]
 public class ChairController : MonoBehaviour
@@ -33,8 +34,16 @@ public class ChairController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
 
+        var cameras = _origin.GetComponentsInChildren<Camera>();
+        foreach (var cam in cameras)
+        {
+            var UAC = cam.GetUniversalAdditionalCameraData();
+            UAC.renderPostProcessing = true;
+        }
+
+
         //StartCoroutine(ResetPos());
-        
+
     }
 
 
