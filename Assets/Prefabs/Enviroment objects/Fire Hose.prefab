@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3178980748458427090}
   - component: {fileID: 8795189056125679257}
   - component: {fileID: 2491911498732386268}
+  - component: {fileID: 1261065159128537584}
   m_Layer: 0
   m_Name: fire hose
   m_TagString: Untagged
@@ -97,7 +98,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 420f4597d30305846b84395033c8c681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,3 +141,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.006125242, y: 0.027491273, z: 0.036049854}
   m_Center: {x: -0.000032283013, y: 0.0020152668, z: -0.0062934337}
+--- !u!114 &1261065159128537584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8773965208561583915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0cf1963b05a114c843c480eee1e37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireStarterPrefab: []
+  randomSize: 0
+  fireStarterSize: 5
+  fireStarterSpacing: {x: 5, y: 5, z: 5}
+  spawnDelay: 0.5
