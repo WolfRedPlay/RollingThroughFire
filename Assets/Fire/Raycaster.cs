@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Raycaster : MonoBehaviour
 {
-    [SerializeField] private GameObject fireFix;
+    public GameObject fireFix;
     public GameObject raycastObj;
     public GameObject targetObj;
     private bool mhasHit = false;
@@ -14,7 +14,7 @@ public class Raycaster : MonoBehaviour
 
     private void Awake()
     {
-        fireFix = GameObject.FindWithTag("FireFix");
+        StartCoroutine(FixFire());
     }
 
     public void StartFire()
