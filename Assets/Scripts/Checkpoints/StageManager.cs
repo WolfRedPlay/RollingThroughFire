@@ -6,7 +6,7 @@ public class StageManager : MonoBehaviour, IDataPersistence
 {
     [Header("Level Stages")]
     [SerializeField] List<Stage> _stages;
-    [SerializeField] GameObject _tutorialObject;
+    
     int _currentStageIndex = -1;
 
     public void LoadData(GameData data)
@@ -33,11 +33,6 @@ public class StageManager : MonoBehaviour, IDataPersistence
 
     }
 
-    private void DisableTutorial()
-    {
-        _tutorialObject.SetActive(false);
-    }
-
     void Start()
     {
         foreach (var stage in _stages) 
@@ -46,8 +41,6 @@ public class StageManager : MonoBehaviour, IDataPersistence
 
             DataPersistenceManager dataManager = DataPersistenceManager.Instance;
             stage.OnStageStarted.AddListener(dataManager.SaveGame);
-            stage.OnStageLoaded.AddListener(DisableTutorial);
-
             if (_currentStageIndex == -1) stage.Checkpoint.SetCheckpointActive(false);
         }
 
