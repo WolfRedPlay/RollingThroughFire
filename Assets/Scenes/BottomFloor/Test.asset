@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2420887292590319468
+--- !u!114 &-6745137789368414648
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 7312965650913443447}
-  - {fileID: -2420887292590319468}
+  - {fileID: -6745137789368414648}
 --- !u!114 &7312965650913443447
 MonoBehaviour:
   m_ObjectHideFlags: 3

@@ -1137,6 +1137,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1162979362726649277, guid: 9db13e33f4eb6fd4f8b4cb978c7f3aac, type: 3}
+      propertyPath: m_TagString
+      value: BlackImage
+      objectReference: {fileID: 0}
     - target: {fileID: 2244261225845131037, guid: 9db13e33f4eb6fd4f8b4cb978c7f3aac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.29
