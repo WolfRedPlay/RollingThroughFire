@@ -9,8 +9,9 @@ public class SceneTransition : MonoBehaviour
 
     private void Awake()
     {
+        mtransitionImage = GameObject.FindWithTag("BlackImage").GetComponent<Image>();
         FadeOut();
-    }
+    }   
 
     public void FadeFunction(bool fadeTo)
     {
@@ -29,7 +30,7 @@ public class SceneTransition : MonoBehaviour
         float startAlpha = startColor.a;
         float targetAlpha = fadeIn ? 1f : 0f;
 
-        while (elapsed < targetAlpha)
+        while (elapsed < mtransitionSpeed)
         {
             elapsed += 0.008f;
             float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, elapsed / mtransitionSpeed);

@@ -9,6 +9,7 @@ TagManager:
   - PlayerFindPoint
   - Electro
   - Throwable
+  - BlackImage
   layers:
   - Default
   - TransparentFX
