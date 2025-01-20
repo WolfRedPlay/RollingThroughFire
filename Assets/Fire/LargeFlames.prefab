@@ -4768,7 +4768,7 @@ GameObject:
   - component: {fileID: 199770912466261370}
   m_Layer: 0
   m_Name: LargeFlames
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9633,15 +9633,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 596481466911289554, guid: 171d2028e55a1844cb5de256a82f43c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 596481466911289554, guid: 171d2028e55a1844cb5de256a82f43c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.33
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 596481466911289554, guid: 171d2028e55a1844cb5de256a82f43c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.47
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 596481466911289554, guid: 171d2028e55a1844cb5de256a82f43c9, type: 3}
       propertyPath: m_LocalRotation.w
