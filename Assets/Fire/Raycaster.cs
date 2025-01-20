@@ -12,6 +12,11 @@ public class Raycaster : MonoBehaviour
     private bool mhasHit2 = false;
     private bool mhasHit3 = false;
 
+    private void Awake()
+    {
+        fireFix = GameObject.FindWithTag("FireFix");
+    }
+
     public void StartFire()
     {
         RaycastHit objectHit;
@@ -51,7 +56,7 @@ public class Raycaster : MonoBehaviour
 
     private IEnumerator FixFire()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(5);
         fireFix.SetActive(true);
     }
 
