@@ -6,8 +6,8 @@ using System.Security.Cryptography;
 
 public class FireManager : MonoBehaviour
 {
-    [SerializeField]private List<GameObject> fireStarterPrefab = new List<GameObject>(3);
-    [SerializeField]private int randomSize = 0;
+    [SerializeField] private List<GameObject> fireStarterPrefab = new List<GameObject>(3);
+    [SerializeField] private int randomSize = 0;
     public float fireStarterSize = 5f;
     public Vector3 fireStarterSpacing = new Vector3(5f, 5f, 5f);
     public float spawnDelay = 0.5f;

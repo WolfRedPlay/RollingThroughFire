@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Threading;
+using System.Collections;
 
 public class Raycaster : MonoBehaviour
 {
+    [SerializeField] private GameObject fireFix;
     public GameObject raycastObj;
     public GameObject targetObj;
     private bool mhasHit = false;
@@ -45,14 +47,12 @@ public class Raycaster : MonoBehaviour
             Instantiate(targetObj, objectHit.point, Quaternion.identity);
             mhasHit2 = true;
         }
-        //if (Physics.Raycast(raycastObj.transform.position, left, out objectHit, 50) && !mhasHit3)
-        //{
-        //    Vector3 incomingVec = objectHit.point - raycastObj.transform.position;
-        //    Vector3 reflectVec = Vector3.Reflect(incomingVec, objectHit.normal);
-        //    Debug.DrawRay(objectHit.point, reflectVec, Color.red);
-        //    Instantiate(targetObj, objectHit.point, Quaternion.identity);
-        //    mhasHit3 = true;
-        //}
+    }
+
+    private IEnumerator FixFire()
+    {
+        yield return new WaitForSeconds(15);
+        fireFix.SetActive(true);
     }
 
 }
