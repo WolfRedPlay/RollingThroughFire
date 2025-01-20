@@ -6238,15 +6238,15 @@ PrefabInstance:
     - {fileID: 1000662906955510728, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     - {fileID: 9173983156334026967, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1680501587, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 8716159149211860043}
     - targetCorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8389541707662805981}
     - targetCorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5492668593512874642}
-    - targetCorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8716159149211860043}
     - targetCorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8773283245133738837}
@@ -6329,6 +6329,11 @@ MonoBehaviour:
 --- !u!4 &1269578419825405879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 1269578420421916742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1269578419949376277 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1680501587, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 1269578420421916742}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1269578420353773385 stripped
@@ -6989,7 +6994,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1269578420353773398}
+    m_TransformParent: {fileID: 1269578419949376277}
     m_Modifications:
     - target: {fileID: 195973445220538348, guid: 02db9bcfc44f8ea4f8fd08cd28024346, type: 3}
       propertyPath: m_fontSize
@@ -7021,15 +7026,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2143089994790412763, guid: 02db9bcfc44f8ea4f8fd08cd28024346, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0172
+      value: 0.017199747
       objectReference: {fileID: 0}
     - target: {fileID: 2143089994790412763, guid: 02db9bcfc44f8ea4f8fd08cd28024346, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.032299995
+      value: -0.032299757
       objectReference: {fileID: 0}
     - target: {fileID: 2143089994790412763, guid: 02db9bcfc44f8ea4f8fd08cd28024346, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0025
+      value: -0.002500169
       objectReference: {fileID: 0}
     - target: {fileID: 2143089994790412763, guid: 02db9bcfc44f8ea4f8fd08cd28024346, type: 3}
       propertyPath: m_LocalRotation.w
