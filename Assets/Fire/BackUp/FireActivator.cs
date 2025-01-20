@@ -7,6 +7,21 @@ public class FireActivator : MonoBehaviour
     [SerializeField] private string FireTag = "Fire";
     [SerializeField] private float SpeedOfGrowing = 1f;
     [SerializeField] private float MaxRadius = 10f;
+    [SerializeField] GameObject Father;
+    bool m_Enabled = false;
+
+    public void ActiveFire()
+    {
+        m_Enabled = true;
+    }
+
+    public void KillFather()
+    {
+        if (Father != null) 
+        {
+            Destroy(Father);
+        }
+    }
 
     private void Awake()
     {
@@ -16,10 +31,13 @@ public class FireActivator : MonoBehaviour
 
     private void Update()
     {
-        if (m_Collider.radius < MaxRadius)
+        if (m_Enabled)
         {
-            m_Collider.radius += SpeedOfGrowing * Time.deltaTime;
-            m_Collider.radius = Mathf.Min(m_Collider.radius, MaxRadius);
+            if (m_Collider.radius < MaxRadius)
+            {
+                m_Collider.radius += SpeedOfGrowing * Time.deltaTime;
+                m_Collider.radius = Mathf.Min(m_Collider.radius, MaxRadius);
+            }
         }
     }
 
