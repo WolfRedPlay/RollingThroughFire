@@ -161,7 +161,7 @@ Shader "Unlit/WaterElectro"
                 electricColor.rgb += 1.0 - 4.2 * electric_field;
 
                 // Combine Water and Electric Effects
-                fixed4 finalColor = waterColor * 5 + electricColor * 0.01;
+                fixed4 finalColor = waterColor + electricColor * 0.5;
 
                 // Apply transparency
                 finalColor.a = _Transparency;
