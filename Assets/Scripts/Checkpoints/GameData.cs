@@ -22,7 +22,7 @@ public class GameData
 
     public GameData()
     {
-        PlayerPosition = new Vector3 (1.35f, 1.68f, 0.11f);
+        PlayerPosition = new Vector3 (-0.537f, 1.875f, -0.414f);
         PlayerRotation = Quaternion.Euler(0f, 90f, 0f);
         CurrentStage = -1;
         ContactsInfo.Add(new ContactInfo(Contact.MOM));

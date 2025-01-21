@@ -2074,7 +2074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3400020402581337368
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2455,7 +2455,6 @@ GameObject:
   - component: {fileID: 8911552704275481057}
   - component: {fileID: 3179963762587340893}
   - component: {fileID: 7228739673961382004}
-  - component: {fileID: 189040817462986087}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -2576,8 +2575,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phonePrefab: {fileID: 6955300624397314412}
-  actionSpawnPhone: {fileID: 6218973294177736055, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  spawnPoint: {fileID: 5650420771074401810}
+  actionSpawnPhoneLeft: {fileID: 6218973294177736055, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  actionSpawnPhoneRight: {fileID: 8349832890807953550, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  spawnPointLeft: {fileID: 5650420771074401810}
+  spawnPointRight: {fileID: 1384086897091504049}
 --- !u!114 &8911552704275481057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2617,24 +2618,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c254ac20849d36647b43e3edd27094f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: {fileID: 0}
+  volume: {fileID: 6119824134183887380}
   bounceRatio: 0.1
   Speed: 1
---- !u!114 &189040817462986087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369581136693829203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2203ef932e1e02e4e9dba73a19f47522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phonePrefab: {fileID: 6955300624397314412}
-  actionSpawnPhone: {fileID: 8349832890807953550, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  spawnPoint: {fileID: 1384086897091504049}
 --- !u!1 &3700875648102003911
 GameObject:
   m_ObjectHideFlags: 0

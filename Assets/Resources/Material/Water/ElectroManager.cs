@@ -5,7 +5,7 @@ public class ElectroManager : MonoBehaviour
 
     private GameObject electro;
 
-    void Start()
+    void Awake()
     {
         electro = GameObject.FindWithTag("Electro");
     }

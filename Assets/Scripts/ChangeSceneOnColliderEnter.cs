@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class ChangeSceneOnColliderEnter : MonoBehaviour
 {
 
-    private SceneTransition mSceneTransition;
+    [SerializeField] SceneTransition mSceneTransition;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

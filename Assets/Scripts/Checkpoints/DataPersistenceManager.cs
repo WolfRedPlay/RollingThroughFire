@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class DataPersistenceManager : MonoBehaviour
@@ -54,7 +55,16 @@ public class DataPersistenceManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (_levelScenesNames.Find(x => x == scene.name) != null)
+        {
+            if (scene.name == "BottomFloor")
+            {
+                _gameData.PlayerPosition = new Vector3(35.198f, -4.72f, 4.474f);
+                _gameData.CurrentStage = -1;
+                _fileDataHandler.Save(_gameData);
+            }
             LoadGame();
+        }
+            
     }
 
     public void NewGame()

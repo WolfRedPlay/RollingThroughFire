@@ -166,6 +166,7 @@ MonoBehaviour:
   fileName: Save
   _levelScenesNames:
   - TopFloor
+  - BottomFloor
 --- !u!1 &95738353
 GameObject:
   m_ObjectHideFlags: 0

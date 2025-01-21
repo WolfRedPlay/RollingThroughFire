@@ -4,17 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class ElevatorButton : MonoBehaviour
 {
-    private SceneTransition mSceneTransition;
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] private SceneTransition mSceneTransition;
+    public void LoadScene()
     {
-        if (collision.gameObject.CompareTag("Hand"))
-        {
-            this.transform.position -= new Vector3(-0.6f, 0, 0);
-            StartCoroutine(LoadScene());
-        }
+        StartCoroutine(LoadSceneCor());
     }
 
-    private IEnumerator LoadScene()
+    private IEnumerator  LoadSceneCor()
     {
         mSceneTransition.FadeIn();
         yield return new WaitForSeconds(2f);

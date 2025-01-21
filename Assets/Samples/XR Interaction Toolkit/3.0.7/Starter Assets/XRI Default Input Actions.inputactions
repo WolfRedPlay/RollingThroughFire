@@ -1283,17 +1283,6 @@
                     "action": "SpawnPhone",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a4341f07-1a19-4ab6-bd3f-b9169c492226",
-                    "path": "<XRController>{RightHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpawnPhone",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
