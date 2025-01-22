@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PhoneLogicUI : MonoBehaviour
 {
@@ -7,6 +8,25 @@ public class PhoneLogicUI : MonoBehaviour
     public GameObject messagesScreen;
     public GameObject settingsScreen;
     public GameObject emergencyScreen;
+
+    [SerializeField] AudioSource audioSource;
+
+
+    private void Start()
+    {
+        var buttons = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (var button in buttons)
+        {
+            button.onClick.AddListener(PlaySound);
+        }
+    }
+
+    public void PlaySound()
+    {
+        audioSource.Play();
+    }
+
     private void CloseAllScreens()
     {
         //homeScreen.SetActive(false);

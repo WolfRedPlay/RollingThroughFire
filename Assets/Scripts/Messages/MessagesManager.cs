@@ -57,6 +57,8 @@ public class MessagesManager : MonoBehaviour
 
         AudioClip clip = _notifications.Dequeue();
         _audioSource.clip = clip;
+        if (clip == _alarm) _audioSource.volume = .3f;
+        else _audioSource.volume = .5f;
         _audioSource.Play();
         lastPlayTime = Time.time;
         _isNotifying = true;

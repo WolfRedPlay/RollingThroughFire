@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Xml;
+using UnityEngine.Events;
 
 
 public class ButtonPress : MonoBehaviour
@@ -19,6 +20,7 @@ public class ButtonPress : MonoBehaviour
     [SerializeField] private TextMeshProUGUI reactorOnText;
     [SerializeField] private TextMeshProUGUI reactorOnText2;
     [SerializeField] private TextMeshProUGUI reactorOnText3;
+    public UnityEvent OnPressed; 
 
 
 
@@ -44,22 +46,14 @@ public class ButtonPress : MonoBehaviour
             reactorOffText2.gameObject.SetActive(false);
             reactorOffText3.gameObject.SetActive(false);
 
+            OnPressed?.Invoke();
 
+            
 
 
 
 
             // Add logic for what happens when the button is pressed
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        // Reset button when the hand leaves
-        if (other.CompareTag("Hand"))
-        {
-            isPressed = false;
-            Debug.Log("Button Released!");
         }
     }
 

@@ -56,6 +56,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (_levelScenesNames.Find(x => x == scene.name) != null)
         {
+            // for demo
             if (scene.name == "BottomFloor")
             {
                 _gameData.PlayerPosition = new Vector3(35.198f, -4.72f, 4.474f);

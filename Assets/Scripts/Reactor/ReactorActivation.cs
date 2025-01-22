@@ -7,6 +7,7 @@ public class ReactorActivation : MonoBehaviour
     //[SerializeField] private Material defaultMaterial; // Optional: The default material
     [SerializeField] private GameObject reactorLight;
     //[SerializeField] private GameObject reactorLight2;
+    [SerializeField] AudioSource audioSource;
 
 
     private bool isActivated = false;
@@ -29,6 +30,7 @@ public class ReactorActivation : MonoBehaviour
            // reactorLight2.SetActive(true);
 
             isActivated = true;
+            audioSource.Play();
         }
     }
 

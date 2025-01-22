@@ -46,9 +46,4 @@ public class StageManager : MonoBehaviour, IDataPersistence
 
         if (_currentStageIndex == -1) _stages[0].Checkpoint.SetCheckpointActive(true);
     }
-
-    void Update()
-    {
-        
-    }
 }
